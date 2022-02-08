@@ -9,7 +9,9 @@
 #include <string>
 using namespace std;
 
-class ZorkUL {
+class ZorkUL
+{
+
 private:
 	Parser parser;
 	Room *currentRoom;

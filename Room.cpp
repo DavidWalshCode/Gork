@@ -2,13 +2,15 @@
 #include "Command.h"
 
 
-Room::Room(string description) {
+Room::Room(string description)
+{
 	this->description = description;
 }
 
-void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
-	if (north != NULL)
-		exits["north"] = north;
+void Room::setExits(Room *north, Room *east, Room *south, Room *west)
+{
+    if (north != NULL)
+        exits["north"] = north;
 	if (east != NULL)
 		exits["east"] = east;
 	if (south != NULL)
@@ -17,73 +19,92 @@ void Room::setExits(Room *north, Room *east, Room *south, Room *west) {
 		exits["west"] = west;
 }
 
-string Room::shortDescription() {
+string Room::shortDescription()
+{
 	return description;
 }
 
-string Room::longDescription() {
+string Room::longDescription()
+{
     return "Room = " + description + "\n" + displayItem() + exitString();
 }
 
-string Room::exitString() {
+string Room::exitString()
+{
 	string returnString = "\nexits =";
-	for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
-		// Loop through map
+    for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
+        // Loop through map
         returnString += "  " + i->first;	// Access the "first" element of the pair (direction as a string)
 	return returnString;
 }
 
-Room* Room::nextRoom(string direction) {
+Room* Room::nextRoom(string direction)
+{
     map<string, Room*>::iterator next = exits.find(direction); // Returns an iterator for the "pair"
-	if (next == exits.end())
+    if (next == exits.end())
         return NULL; // If exits.end() was returned, there's no room in that direction.
 	return next->second; // If there is a room, remove the "second" (Room*)
                 // Part of the "pair" (<string, Room*>) and return it.
 }
 
-void Room::addItem(Item *inItem) {
+void Room::addItem(Item *inItem)
+{
     //cout << endl;
     //cout << "Just added" + inItem->getLongDescription();
     itemsInRoom.push_back(*inItem);
 }
 
-string Room::displayItem() {
+string Room::displayItem()
+{
     string tempString = "Items in room = ";
     int sizeItems = (itemsInRoom.size());
-    if (itemsInRoom.size() < 1) {
+
+    if (itemsInRoom.size() < 1)
+    {
         tempString = "No items in room";
-        }
-    else if (itemsInRoom.size() > 0) {
-       int x = (0);
-        for (int n = sizeItems; n > 0; n--) {
+    }
+    else if (itemsInRoom.size() > 0)
+    {
+        int x = (0);
+        for (int n = sizeItems; n > 0; n--)
+        {
             tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
             x++;
-            }
         }
-    return tempString;
     }
 
-int Room::numberOfItems() {
+    return tempString;
+}
+
+int Room::numberOfItems()
+{
     return itemsInRoom.size();
 }
 
 int Room::isItemInRoom(string inString)
 {
     int sizeItems = (itemsInRoom.size());
-    if (itemsInRoom.size() < 1) {
+
+    if (itemsInRoom.size() < 1)
+    {
         return false;
-        }
-    else if (itemsInRoom.size() > 0) {
-       int x = (0);
-        for (int n = sizeItems; n > 0; n--) {
+    }
+
+    else if (itemsInRoom.size() > 0)
+    {
+        int x = (0);
+        for (int n = sizeItems; n > 0; n--)
+        {
             // compare inString with short description
             int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
-            if (tempFlag == 0) {
+            if (tempFlag == 0)
+            {
                 itemsInRoom.erase(itemsInRoom.begin()+x);
                 return x;
             }
             x++;
             }
         }
+
     return -1;
 }

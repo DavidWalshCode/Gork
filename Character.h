@@ -8,7 +8,9 @@ using namespace std;
 using std::vector;
 
 
-class Character {
+class Character
+{
+
 private:
 	string description;
 	 vector < string > itemsInCharacter;

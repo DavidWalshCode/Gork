@@ -4,7 +4,9 @@
 #include <string>
 using namespace std;
 
-class Command {
+class Command
+{
+
 private:
 	string commandWord;
 	string secondWord;

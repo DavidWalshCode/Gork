@@ -4,7 +4,8 @@ Parser::Parser() {
 	commands = new CommandWords();
 }
 
-Command* Parser::getCommand() {
+Command* Parser::getCommand()
+{
     string inputLine = ""; // Will hold the full input line
 	string word1;
 	string word2;
@@ -19,9 +20,11 @@ Command* Parser::getCommand() {
 
 	// Break "buffer" up by spaces
 	bool finished = false;
-	while (!finished) {
+    while (!finished)
+    {
         pos = buffer.find_first_of(' ', last_pos);	// Find and remember first space.
-        if (pos == string::npos ) {			// If we found the last word,
+        if (pos == string::npos ) // If we found the last word,
+        {
             words.push_back(buffer.substr(last_pos));	// Add it to vector "words"
             finished = true;				// And finish searching.
         } else {					// Otherwise add to vector and move on to next word.
@@ -32,7 +35,8 @@ Command* Parser::getCommand() {
 
     if (words.size() == 1) // Was only 1 word entered?
         word1 = words[0]; // Get first word
-    else if (words.size() >= 2) { // Were at least 2 words entered?
+    else if (words.size() >= 2) // Were at least 2 words entered?
+    {
         word1 = words[0]; // Get first word
         word2 = words[1]; // Get second word
 	}
@@ -50,6 +54,7 @@ Command* Parser::getCommand() {
 /**
  * Print out a list of valid command words.
  */
-void Parser::showCommands() {
+void Parser::showCommands()
+{
 	commands->showAll();
 }

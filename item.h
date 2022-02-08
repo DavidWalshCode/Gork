@@ -6,7 +6,9 @@
 #include <iostream>
 using namespace std;
 
-class Item {
+class Item
+{
+
 private:
 	string description;
 	string longDescription;
