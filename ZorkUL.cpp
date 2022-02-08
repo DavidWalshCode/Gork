@@ -16,30 +16,30 @@ ZorkUL::ZorkUL() {
 void ZorkUL::createRooms()  {
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *j;
 
-	a = new Room("a");
+    a = new Room("a");
         a->addItem(new Item("x", 1, 11));
         a->addItem(new Item("y", 2, 22));
-	b = new Room("b");
+    b = new Room("b");
         b->addItem(new Item("xx", 3, 33));
         b->addItem(new Item("yy", 4, 44));
-	c = new Room("c");
-	d = new Room("d");
-	e = new Room("e");
-	f = new Room("f");
-	g = new Room("g");
-	h = new Room("h");
-	i = new Room("i");
+    c = new Room("c");
+    d = new Room("d");
+    e = new Room("e");
+    f = new Room("f");
+    g = new Room("g");
+    h = new Room("h");
+    i = new Room("i");
     j = new Room("j");
 
 //             (N, E, S, W)
-	a->setExits(f, b, d, c);
-	b->setExits(NULL, NULL, NULL, a);
-	c->setExits(NULL, a, NULL, NULL);
+    a->setExits(f, b, d, c);
+    b->setExits(NULL, NULL, NULL, a);
+    c->setExits(NULL, a, NULL, NULL);
     d->setExits(a, e, j, i);
-	e->setExits(NULL, NULL, NULL, d);
-	f->setExits(NULL, g, a, h);
-	g->setExits(NULL, NULL, NULL, f);
-	h->setExits(NULL, f, NULL, NULL);
+    e->setExits(NULL, NULL, NULL, d);
+    f->setExits(NULL, g, a, h);
+    g->setExits(NULL, NULL, NULL, f);
+    h->setExits(NULL, f, NULL, NULL);
     i->setExits(NULL, d, NULL, NULL);
     j->setExits(d, NULL, NULL, NULL);
 
@@ -50,29 +50,30 @@ void ZorkUL::createRooms()  {
  *  Main play routine.  Loops until end of play.
  */
 void ZorkUL::play() {
-	printWelcome();
+    printWelcome();
 
     // Enter the main command loop.  Here we repeatedly read commands and execute them until the ZorkUL game is over.
 
-	bool finished = false;
-	while (!finished) {
-		// Create pointer to command and give it a command.
-		Command* command = parser.getCommand();
-		// Pass dereferenced command and check for end of game.
-		finished = processCommand(*command);
-		// Free the memory allocated by "parser.getCommand()"
-		//   with ("return new Command(...)")
-		delete command;
-	}
-	cout << endl;
-	cout << "end" << endl;
+    bool finished = false;
+        while (!finished) {
+            // Create pointer to command and give it a command.
+            Command* command = parser.getCommand();
+            // Pass dereferenced command and check for end of game.
+            finished = processCommand(*command);
+            // Free the memory allocated by "parser.getCommand()"
+            // with ("return new Command(...)")
+            delete command;
+        }
+
+    cout << endl;
+    cout << "end" << endl;
 }
 
 void ZorkUL::printWelcome() {
     cout << "The start of a grand adventure..."<< endl;
     cout << "Type info for help"<< endl;
-	cout << endl;
-	cout << currentRoom->longDescription() << endl;
+    cout << endl;
+    cout << currentRoom->longDescription() << endl;
 }
 
 /**
@@ -81,30 +82,30 @@ void ZorkUL::printWelcome() {
  * returned.
  */
 bool ZorkUL::processCommand(Command command) {
-	if (command.isUnknown()) {
-        cout << "invalid input" << endl;
-		return false;
-	}
+    if (command.isUnknown()) {
+        cout << "Invalid input" << endl;
+        return false;
+    }
 
-	string commandWord = command.getCommandWord();
-	if (commandWord.compare("info") == 0)
-		printHelp();
+    string commandWord = command.getCommandWord();
+    if (commandWord.compare("info") == 0)
+        printHelp();
 
-	else if (commandWord.compare("map") == 0)
-		{
+    else if (commandWord.compare("map") == 0)
+    {
         cout << "[h] --- [f] --- [g]" << endl;
-		cout << "         |         " << endl;
-        cout << "         |         " << endl;
-		cout << "[c] --- [a] --- [b]" << endl;
-		cout << "         |         " << endl;
-		cout << "         |         " << endl;
-		cout << "[i] --- [d] --- [e]" << endl;
         cout << "         |         " << endl;
         cout << "         |         " << endl;
-        cout << "[]  --- [j] ---  []" << endl;
-		}
+        cout << "[c] --- [a] --- [b]" << endl;
+        cout << "         |         " << endl;
+        cout << "         |         " << endl;
+        cout << "[i] --- [d] --- [e]" << endl;
+        cout << "         |         " << endl;
+        cout << "         |         " << endl;
+        cout << "        [j]        " << endl;
+    }
 
-	else if (commandWord.compare("go") == 0)
+    else if (commandWord.compare("go") == 0)
     {
         cout << "You begin walking" << endl;
         goRoom(command);
@@ -118,20 +119,20 @@ bool ZorkUL::processCommand(Command command) {
 
     else if (commandWord.compare("take") == 0)
     {
-       	if (!command.hasSecondWord()) {
-        cout << "Incomplete input"<< endl;
+        if (!command.hasSecondWord()) {
+            cout << "Incomplete input"<< endl;
         }
         else
-         if (command.hasSecondWord()) {
-        cout << "You're trying to take " + command.getSecondWord() << endl;
-        int location = currentRoom->isItemInRoom(command.getSecondWord());
-        if (location  < 0 )
-            cout << "Item is not in room.." << endl;
-        else
-            cout << "Item is in room!" << endl;
-            cout << "Index number " << + location << endl;
-            cout << endl;
-            cout << currentRoom->longDescription() << endl;
+            if (command.hasSecondWord()) {
+                cout << "You're trying to take " + command.getSecondWord() << endl;
+                int location = currentRoom->isItemInRoom(command.getSecondWord());
+            if (location  < 0 )
+                cout << "Item is not in room..." << endl;
+            else
+                cout << "Item is in room!" << endl;
+                cout << "Index number " << + location << endl;
+                cout << endl;
+                cout << currentRoom->longDescription() << endl;
         }
     }
 
@@ -152,11 +153,12 @@ bool ZorkUL::processCommand(Command command) {
     }
 */
     else if (commandWord.compare("quit") == 0) {
-		if (command.hasSecondWord())
+        if (command.hasSecondWord())
             cout << "Overdefined input"<< endl;
-		else
-			return true; /**signal to quit*/
+        else
+            return true; // signal to quit
 	}
+
 	return false;
 }
 

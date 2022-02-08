@@ -28,7 +28,7 @@ bool CommandWords::isCommand(string aString) {
 		if (validCommands[i].compare(aString) == 0)
 			return true;
 	}
-	// if we get here, the string was not found in the commands
+    // If we get here, the string was not found in the commands
 	return false;
 }
 
@@ -36,7 +36,7 @@ bool CommandWords::isCommand(string aString) {
  * Print all valid commands to System.out.
  */
 void CommandWords::showAll() {
-	//Loops through validCommands and prints each to the screen.
+    // Loops through validCommands and prints each to the screen.
 	for (unsigned int i = 0; i < validCommands.size(); i++)
 	{
 		cout << validCommands[i]<< "  ";
