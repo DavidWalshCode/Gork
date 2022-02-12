@@ -7,16 +7,16 @@ SOURCES += \
         Character.cpp \
         Command.cpp \
         CommandWords.cpp \
+        Item.cpp \
         Parser.cpp \
         Room.cpp \
-        ZorkUL.cpp \
-        item.cpp
+        Zork.cpp
 
 HEADERS += \
     Character.h \
     Command.h \
     CommandWords.h \
+    Item.h \
     Parser.h \
     Room.h \
-    ZorkUL.h \
-    item.h
+    Zork.h

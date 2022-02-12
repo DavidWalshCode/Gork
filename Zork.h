@@ -1,20 +1,20 @@
-#ifndef ZORKUL_H_
-#define ZORKUL_H_
+#ifndef ZORK_H_
+#define ZORK_H_
 
 #include "Command.h"
 #include "Parser.h"
 #include "Room.h"
-#include "item.h"
+#include "Item.h"
 #include <iostream>
 #include <string>
 #include <map>
 using namespace std;
 
-class ZorkUL
+class Zork
 {
 
 public:
-    ZorkUL();
+    Zork();
     void play();
     void go(string direction);
 
@@ -34,4 +34,4 @@ private:
     void setCurrentRoom(string name);
 };
 
-#endif /*ZORKUL_H_*/
+#endif /*ZORK_H_*/

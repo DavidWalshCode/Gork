@@ -5,23 +5,23 @@
 
 using namespace std;
 
-#include "ZorkUL.h"
+#include "Zork.h"
 
 int main(int argc, char** argv)
 {
     srand(time(NULL));
 
-	ZorkUL temp;
+    Zork temp;
 	temp.play();
 	return 0;
 }
 
-ZorkUL::ZorkUL()
+Zork::Zork()
 {
 	createRooms();
 }
 
-void ZorkUL::createRooms()
+void Zork::createRooms()
 {
     Room a("a");
     a.addItem(Item("x", 1, 11));
@@ -69,7 +69,7 @@ void ZorkUL::createRooms()
 /**
  *  Main play routine.  Loops until end of play.
  */
-void ZorkUL::play()
+void Zork::play()
 {
     printWelcome();
 
@@ -92,7 +92,7 @@ void ZorkUL::play()
     cout << "End" << endl;
 }
 
-void ZorkUL::printWelcome()
+void Zork::printWelcome()
 {
     cout << "The start of a grand adventure..."<< endl;
     cout << "Type info for help"<< endl;
@@ -105,7 +105,7 @@ void ZorkUL::printWelcome()
  * If this command ends the ZorkUL game, true is returned, otherwise false is
  * returned.
  */
-bool ZorkUL::processCommand(Command command)
+bool Zork::processCommand(Command command)
 {
     if (command.isUnknown())
     {
@@ -202,13 +202,13 @@ bool ZorkUL::processCommand(Command command)
 }
 
 /** COMMANDS **/
-void ZorkUL::printHelp()
+void Zork::printHelp()
 {
     cout << "Valid inputs are: " << endl;
     parser.showCommands();
 }
 
-void ZorkUL::go(Command command)
+void Zork::go(Command command)
 {
     if (!command.hasSecondWord())
     {
@@ -221,7 +221,7 @@ void ZorkUL::go(Command command)
     go(direction);
 }
 
-void ZorkUL::teleportRandomRoom()
+void Zork::teleportRandomRoom()
 {
     auto it = rooms.begin();
     advance(it, rand() % rooms.size());
@@ -231,7 +231,7 @@ void ZorkUL::teleportRandomRoom()
     cout << currentRoom->longDescription() << endl;
 }
 
-void ZorkUL::teleportRoom(Command command)
+void Zork::teleportRoom(Command command)
 {
     if (!command.hasSecondWord())
     {
@@ -245,7 +245,7 @@ void ZorkUL::teleportRoom(Command command)
     cout << currentRoom->longDescription() << endl;
 }
 
-void ZorkUL::go(string direction)
+void Zork::go(string direction)
 {
     // Make the direction lowercase
     // transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
@@ -263,7 +263,7 @@ void ZorkUL::go(string direction)
     }
 }
 
-void ZorkUL::setCurrentRoom(string name)
+void Zork::setCurrentRoom(string name)
 {
     auto it = rooms.find(name);
 
