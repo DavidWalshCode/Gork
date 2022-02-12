@@ -7,16 +7,16 @@ using namespace std;
 class Command
 {
 
+public:
+    Command(string firstWord, string secondWord);
+    string getCommandWord();
+    string getSecondWord();
+    bool isUnknown();
+    bool hasSecondWord();
+
 private:
 	string commandWord;
 	string secondWord;
-
-public:
-	Command(string firstWord, string secondWord);
-	string getCommandWord();
-	string getSecondWord();
-	bool isUnknown();
-	bool hasSecondWord();
 };
 
 #endif /*COMMAND_H_*/

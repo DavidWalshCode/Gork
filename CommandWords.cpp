@@ -7,10 +7,12 @@ vector<string> CommandWords::validCommands;
  */
 CommandWords::CommandWords() {
 	// Populate the vector if we haven't already.
-	if (validCommands.empty()) {
+    if (validCommands.empty())
+    {
 		validCommands.push_back("go");
         validCommands.push_back("map");
         validCommands.push_back("teleport");
+        validCommands.push_back("random");
 		validCommands.push_back("take");
 		validCommands.push_back("put");
         validCommands.push_back("info");
@@ -27,7 +29,9 @@ bool CommandWords::isCommand(string aString)
 	for (unsigned int i = 0; i < validCommands.size(); i++)
 	{
 		if (validCommands[i].compare(aString) == 0)
+        {
 			return true;
+        }
 	}
     // If we get here, the string was not found in the commands
 	return false;

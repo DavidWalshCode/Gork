@@ -7,13 +7,13 @@
 class Parser
 {
 
+public:
+    Parser();
+    Command* getCommand();
+    void showCommands();
+
 private:
 	CommandWords *commands;
-
-public:
-	Parser();
-	Command* getCommand();
-	void showCommands();
 };
 
 #endif /*PARSER_H_*/

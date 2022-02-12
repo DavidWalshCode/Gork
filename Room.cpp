@@ -1,57 +1,71 @@
 #include "Room.h"
 #include "Command.h"
 
-
-Room::Room(string description)
+Room::Room(string name)
 {
-	this->description = description;
+    this->name = name;
 }
 
-void Room::setExits(Room *north, Room *east, Room *south, Room *west)
+void Room::setExits(string north, string east, string south, string west)
 {
-    if (north != NULL)
+    if (!north.empty())
+    {
         exits["north"] = north;
-	if (east != NULL)
-		exits["east"] = east;
-	if (south != NULL)
+    }
+    if (!east.empty())
+    {
+        exits["east"] = east;
+    }
+    if (!south.empty())
+    {
 		exits["south"] = south;
-	if (west != NULL)
+    }
+    if (!west.empty())
+    {
 		exits["west"] = west;
+    }
 }
 
 string Room::shortDescription()
 {
-	return description;
+    return name;
 }
 
 string Room::longDescription()
 {
-    return "Room = " + description + "\n" + displayItem() + exitString();
+    return "Room = " + name + "\n" + displayItem() + exitString();
 }
 
 string Room::exitString()
 {
 	string returnString = "\nexits =";
-    for (map<string, Room*>::iterator i = exits.begin(); i != exits.end(); i++)
+
+    for (auto i = exits.begin(); i != exits.end(); i++)
+    {
         // Loop through map
         returnString += "  " + i->first;	// Access the "first" element of the pair (direction as a string)
+    }
+
 	return returnString;
 }
 
-Room* Room::nextRoom(string direction)
+string Room::nextRoom(string direction)
 {
-    map<string, Room*>::iterator next = exits.find(direction); // Returns an iterator for the "pair"
+    auto next = exits.find(direction); // Returns an iterator for the "pair"
+
     if (next == exits.end())
-        return NULL; // If exits.end() was returned, there's no room in that direction.
-	return next->second; // If there is a room, remove the "second" (Room*)
-                // Part of the "pair" (<string, Room*>) and return it.
+    {
+        return ""; // If exits.end() was returned, there's no room in that direction.
+    }
+
+    return next->second; // If there is a room, return the name
 }
 
-void Room::addItem(Item *inItem)
+void Room::addItem(Item item)
 {
     //cout << endl;
     //cout << "Just added" + inItem->getLongDescription();
-    itemsInRoom.push_back(*inItem);
+    itemsInRoom.push_back(item);
 }
 
 string Room::displayItem()
@@ -102,6 +116,7 @@ int Room::isItemInRoom(string inString)
                 itemsInRoom.erase(itemsInRoom.begin()+x);
                 return x;
             }
+
             x++;
             }
         }

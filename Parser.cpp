@@ -27,14 +27,18 @@ Command* Parser::getCommand()
         {
             words.push_back(buffer.substr(last_pos));	// Add it to vector "words"
             finished = true;				// And finish searching.
-        } else {					// Otherwise add to vector and move on to next word.
+        }
+        else
+        {					// Otherwise add to vector and move on to next word.
 			words.push_back(buffer.substr(last_pos, pos - last_pos));
 			last_pos = pos + 1;
 		}
 	}
 
     if (words.size() == 1) // Was only 1 word entered?
+    {
         word1 = words[0]; // Get first word
+    }
     else if (words.size() >= 2) // Were at least 2 words entered?
     {
         word1 = words[0]; // Get first word
@@ -46,9 +50,13 @@ Command* Parser::getCommand()
 	// If not, create a "nil" command (empty string for unknown command).
 
 	if (commands->isCommand(word1))
+    {
 		return new Command(word1, word2);
+    }
 	else
+    {
 		return new Command("", word2);
+    }
 }
 
 /**

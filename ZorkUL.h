@@ -7,28 +7,31 @@
 #include "item.h"
 #include <iostream>
 #include <string>
+#include <map>
 using namespace std;
 
 class ZorkUL
 {
 
+public:
+    ZorkUL();
+    void play();
+    void go(string direction);
+
 private:
 	Parser parser;
 	Room *currentRoom;
+    map<string, Room> rooms;
 	void createRooms();
 	void printWelcome();
 	bool processCommand(Command command);
 	void printHelp();
-	void goRoom(Command command);
+    void go(Command command);
+    void teleportRandomRoom();
     void teleportRoom(Command command);
     void createItems();
     void displayItems();
-
-public:
-	ZorkUL();
-	void play();
-	string go(string direction);
-    string teleport(string room);
+    void setCurrentRoom(string name);
 };
 
 #endif /*ZORKUL_H_*/
