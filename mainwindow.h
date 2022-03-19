@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPushButton>
 
+using std::string;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -16,22 +18,23 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void clearConsole();
+    void addStringToConsole(string input);
+    void addQStringToConsole(QString input);
+    void overwriteConsole(string input);
+    void updateBackground(string path);
+    void parseInput(string input);
+    void scrollToBottom();
+
 private slots:
-    //void on_pushButton_clicked();
-
-    void on_eastButton_clicked();
-
-    void on_northButton_clicked();
-
-    void on_westButton_clicked();
-
-    void on_southButton_clicked();
-
-    void on_quitButton_clicked();
-
-    void on_mapButton_clicked();
-
-    void on_teleportButton_clicked();
+    void on_northButton_pressed();
+    void on_eastButton_pressed();
+    void on_southButton_pressed();
+    void on_westButton_pressed();
+    void on_mapButton_pressed();
+    void on_interactButton_pressed();
+    void on_teleportButton_pressed();
+    void on_quitButton_pressed();
 
 private:
     Ui::MainWindow *ui;

@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "Zork.h"
+#include "TextContent.h"
 #include <QMessageBox>
 #include <QDebug>
 
@@ -8,48 +10,107 @@ MainWindow::MainWindow(QWidget *parent) :
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //push_button2 = new QPushButton(this);
-    /*push_button2->setText("Click");
-    push_button2->setGeometry(QRect(QPoint(0, 0), QSize(100, 50)));
-    connect(push_button2, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked())); */
+
 }
 
+// Destructor
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
-void MainWindow::on_northButton_clicked()
-{
-    ui->textOutput->setText("Go North");
+void MainWindow::clearConsole(){
+    ui->outputConsole->clear();
 }
 
-void MainWindow::on_eastButton_clicked()
-{
-    ui->textOutput->setText("Go East");
+// Scrolls to the bottom of the output
+void MainWindow::scrollToBottom(){
+    //ui->scrollArea->verticalScrollBar()->setValue(ui->scrollArea->verticalScrollBar()->maximum());
 }
 
-void MainWindow::on_westButton_clicked()
-{
-    ui->textOutput->setText("Go West");
+// Printing to game console - Supports string and QString
+void MainWindow::addStringToConsole(string input){
+    //qDebug("Hello");
+    ui->outputConsole->setText(ui->outputConsole->text() + QString::fromStdString("\n") + QString::fromStdString(input));
+    scrollToBottom();
 }
 
-void MainWindow::on_southButton_clicked()
-{
-    ui->textOutput->setText("Go South");
+void MainWindow::addQStringToConsole(QString input){
+    //qDebug("Hello");
+    ui->outputConsole->setText(ui->outputConsole->text() + QString::fromStdString("\n") + input);
+    scrollToBottom();
 }
 
-void MainWindow::on_mapButton_clicked()
-{
-    ui->textOutput->setText("Map");
+// Clears the console and prints something
+void MainWindow::overwriteConsole(string input){
+    ui->outputConsole->clear();
+    addStringToConsole(input);
+
+    scrollToBottom();
 }
 
-void MainWindow::on_teleportButton_clicked()
-{
-    ui->textOutput->setText("Teleport");
+// Trying to convert input to a command and printing out the appropriate output.
+void MainWindow::parseInput(string input){
+    Command *command = Zork::getParser()->convertToCommand(input);
+    //    addStringToConsole("> " + input + "\n");
+    overwriteConsole("> " + input + "\n");
+    string output = Zork::processCommand(*command, this);
+
+    // Processes errors
+    if(output.compare("") == 0){
+        //addStringToConsole(Dialogues::inputError);
+        overwriteConsole(TextContent::inputError);
+        return;
+    }
+
+    //    addStringToConsole(output);
+    overwriteConsole(output);
+    //ui->moneyLabel->setText(QString::fromStdString("Money: " + std::to_string(Zork::getMoney())));
+
+    delete command;
+
+    ui->input->setFocus();
+    scrollToBottom();
 }
 
-void MainWindow::on_quitButton_clicked()
+
+// Buttons
+void MainWindow::on_northButton_pressed()
+{
+    parseInput("go north");
+}
+
+void MainWindow::on_eastButton_pressed()
+{
+    parseInput("go east");
+}
+
+void MainWindow::on_southButton_pressed()
+{
+    parseInput("go south");
+}
+
+void MainWindow::on_westButton_pressed()
+{
+    parseInput("go west");
+}
+
+void MainWindow::on_mapButton_pressed()
+{
+    parseInput("map");
+}
+
+void MainWindow::on_interactButton_pressed()
+{
+    parseInput("take");
+}
+
+void MainWindow::on_teleportButton_pressed()
+{
+    parseInput("random");
+}
+
+void MainWindow::on_quitButton_pressed()
 {
     // Notes about Message Boxes
     /*
@@ -62,7 +123,7 @@ void MainWindow::on_quitButton_clicked()
         e.g. QMessageBox::question(this, "My Title", "This is my custom message");
     */
 
-    QMessageBox::StandardButton reply = QMessageBox::question(this, "Forever Sleep", "Are you sure you want to go to sleep Captain?",
+    QMessageBox::StandardButton reply = QMessageBox::warning(this, "Forever Sleep", "Are you sure you want to go to sleep Captain?",
                                                               QMessageBox::Yes | QMessageBox::No);
 
     if (reply == QMessageBox::Yes)
