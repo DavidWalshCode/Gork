@@ -2,18 +2,32 @@
 #include <ctime>
 #include <cstdlib>
 #include <iterator>
+#include <QApplication>
+
+#include "Zork.h"
+#include "mainwindow.h"
+#include "TextContent.h"
 
 using namespace std;
 
-#include "Zork.h"
+Parser *Zork::parser;
 
 int main(int argc, char* argv[])
 {
-    srand(time(NULL));
+    Parser* parser = new Parser();
+    Zork::setParser(parser);
 
-    Zork temp;
-	temp.play();
-	return 0;
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.setWindowState(Qt::WindowMaximized);
+    MainWindow *windowPtr = &w;
+    w.show();
+    w.clearConsole();
+
+    w.addStringToConsole(TextContent::welcome);
+
+    delete Zork::getParser();
+    return a.exec();
 }
 
 Zork::Zork()
@@ -80,7 +94,7 @@ void Zork::play()
     while (!finished)
     {
         // Create pointer to command and give it a command.
-        Command* command = parser.getCommand();
+        Command* command = parser->getCommand();
         // Pass dereferenced command and check for end of game.
         finished = processCommand(*command);
         // Free the memory allocated by "parser.getCommand()"
@@ -204,7 +218,7 @@ bool Zork::processCommand(Command command)
 void Zork::printHelp()
 {
     cout << "Valid inputs are: " << endl;
-    parser.showCommands();
+    parser->showCommands();
 }
 
 void Zork::go(Command command)
@@ -270,4 +284,12 @@ void Zork::setCurrentRoom(string name)
     {
         currentRoom = &it->second;
     }
+}
+
+void Zork::setParser(Parser *parser){
+    Zork::parser = parser;
+}
+
+Parser* Zork::getParser(){
+    return Zork::parser;
 }

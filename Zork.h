@@ -18,8 +18,11 @@ public:
     void play();
     void go(string direction);
 
+    static void setParser(Parser *parser);
+    static Parser* getParser();
+
 private:
-	Parser parser;
+    static Parser* parser;
 	Room *currentRoom;
     map<string, Room> rooms;
 	void createRooms();
