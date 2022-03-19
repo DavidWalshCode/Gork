@@ -40,7 +40,7 @@ void Zork::createRooms()
          i("i"),
          j("j");
 
-//             (N, E, S, W)
+//             (N,   E,   S,   W)
     a.setExits("f", "b", "d", "c");
     b.setExits("", "", "", "a");
     c.setExits("", "a", "", "");
@@ -102,8 +102,7 @@ void Zork::printWelcome()
 
 /**
  * Given a command, process (that is: execute) the command.
- * If this command ends the ZorkUL game, true is returned, otherwise false is
- * returned.
+ * If this command ends the ZorkUL game, true is returned, otherwise false is returned.
  */
 bool Zork::processCommand(Command command)
 {

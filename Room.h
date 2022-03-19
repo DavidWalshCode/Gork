@@ -12,22 +12,22 @@ class Room
 {
 
 public:
-    Room(string name);
-    int numberOfItems();
-    void setExits(string north, string east, string south, string west);
+	Room(string name);
+	int numberOfItems();
+	void setExits(string north, string east, string south, string west);
 	string shortDescription();
 	string longDescription();
-    string nextRoom(string direction);
-    void addItem(Item item);
-    string displayItem();
-    int isItemInRoom(string inString);
-    void removeItemFromRoom(int location);
+	string nextRoom(string direction);
+	void addItem(Item item);
+	string displayItem();
+	int isItemInRoom(string inString);
+	void removeItemFromRoom(int location);
 
 private:
-    string name;
-    map<string, string> exits;
-    string exitString();
-    vector <Item> itemsInRoom;
+	string name;
+	map<string, string> exits;
+	string exitString();
+	vector <Item> itemsInRoom;
 };
 
 #endif

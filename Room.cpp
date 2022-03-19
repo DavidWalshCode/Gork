@@ -38,7 +38,7 @@ string Room::longDescription()
 
 string Room::exitString()
 {
-	string returnString = "\nexits =";
+    string returnString = "\nExits =";
 
     for (auto i = exits.begin(); i != exits.end(); i++)
     {
