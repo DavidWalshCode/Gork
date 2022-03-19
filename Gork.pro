@@ -16,8 +16,8 @@ SOURCES += \
     Item.cpp \
     Parser.cpp \
     Room.cpp \
+    TextContent.cpp \
     Zork.cpp \
-    main.cpp \
     mainwindow.cpp
 
 HEADERS += \
@@ -28,6 +28,7 @@ HEADERS += \
     Item.h \
     Parser.h \
     Room.h \
+    TextContent.h \
     Zork.h \
     mainwindow.h
 
