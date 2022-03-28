@@ -5,7 +5,7 @@ Zork with a GUI
 
 Written in C++ and made in Qt Creator
 
-# C++ Assessment Criteria
+# C++ Concepts to Implement
 
 - Virtual functions  
 - Template classes  
