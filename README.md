@@ -15,7 +15,7 @@ Written in C++ and made in Qt Creator
 - Unions  
 - Operator overloading  
 - Abstract classes  
-- Copy constructors (deep , shallow copy)  
+- Copy constructors (deep, shallow copy)  
 - Bit structures  
 - Advanced pre-processor directives  
 - C++ Object Construction Sequence  
