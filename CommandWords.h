@@ -12,7 +12,7 @@ class CommandWords
 public:
     CommandWords();
     bool isCommand(string aString);
-    void showAll();
+    string showAllCommands();
 
 private:
 	//Define a static vector for our valid command words.
