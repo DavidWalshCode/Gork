@@ -27,8 +27,8 @@ private:
     map<string, Room> rooms;
 	void createRooms();
 	void printWelcome();
-	bool processCommand(Command command);
-	void printHelp();
+    string processCommand(Command command);
+    string printHelp();
     void go(Command command);
     void teleportRandomRoom();
     void teleportRoom(Command command);

@@ -25,6 +25,9 @@ int main(int argc, char* argv[])
     w.clearConsole();
 
     w.addStringToConsole(TextContent::welcome);
+    //ZorkUL::updateRoom(ZorkUL::getCurrentRoom(), windowPtr);
+    //string roomDescription = ZorkUL::getCurrentRoom()->getShortDescription();
+    //w.addStringToConsole(Dialogues::printCurrentRoom(roomDescription));
 
     delete Zork::getParser();
     return a.exec();
@@ -81,68 +84,37 @@ void Zork::createRooms()
 }
 
 /**
- *  Main play routine.  Loops until end of play.
- */
-void Zork::play()
-{
-    printWelcome();
-
-    // Enter the main command loop.  Here we repeatedly read commands and execute them until the ZorkUL game is over.
-
-    bool finished = false;
-
-    while (!finished)
-    {
-        // Create pointer to command and give it a command.
-        Command* command = parser->getCommand();
-        // Pass dereferenced command and check for end of game.
-        finished = processCommand(*command);
-        // Free the memory allocated by "parser.getCommand()"
-        // with ("return new Command(...)")
-        delete command;
-    }
-
-    cout << endl;
-    cout << "End" << endl;
-}
-
-void Zork::printWelcome()
-{
-    cout << "The start of a grand adventure..."<< endl;
-    cout << "Type info for help"<< endl;
-    cout << endl;
-    cout << currentRoom->longDescription() << endl;
-}
-
-/**
  * Given a command, process (that is: execute) the command.
  * If this command ends the ZorkUL game, true is returned, otherwise false is returned.
  */
-bool Zork::processCommand(Command command)
+string Zork::processCommand(Command command)
 {
+    string output = "";
+
     if (command.isUnknown())
     {
-        cout << "Invalid input" << endl;
-        return false;
+        output += TextContent::inputError;
+        return output;
     }
 
     string commandWord = command.getCommandWord();
+
     if (commandWord.compare("info") == 0)
     {
-        printHelp();
+        output += printHelp();
     }
     else if (commandWord.compare("map") == 0)
     {
-        cout << "[h] --- [f] --- [g]" << endl;
-        cout << "         |         " << endl;
-        cout << "         |         " << endl;
-        cout << "[c] --- [a] --- [b]" << endl;
-        cout << "         |         " << endl;
-        cout << "         |         " << endl;
-        cout << "[i] --- [d] --- [e]" << endl;
-        cout << "         |         " << endl;
-        cout << "         |         " << endl;
-        cout << "        [j]        " << endl;
+        output += "[h] --- [f] --- [g]"
+                  "         |         "
+                  "         |         "
+                  "[c] --- [a] --- [b]"
+                  "         |         "
+                  "         |         "
+                  "[i] --- [d] --- [e]"
+                  "         |         "
+                  "         |         "
+                  "        [j]        ";
     }
     else if (commandWord.compare("go") == 0)
     {
@@ -207,18 +179,21 @@ bool Zork::processCommand(Command command)
         }
         else
         {
-            return true; // signal to quit
+            // Make delete command and put here, something like (Zork::deleteAllStuff();)
         }
+
+        exit(0); // signal to quit
 	}
 
-	return false;
+    return output;
 }
 
 /** COMMANDS **/
-void Zork::printHelp()
+string Zork::printHelp()
 {
-    cout << "Valid inputs are: " << endl;
-    parser->showCommands();
+    string output = "Captain here are the commands you can shout to the crew: ";
+    output += Zork::parser->showAllCommands();
+    return output;
 }
 
 void Zork::go(Command command)
