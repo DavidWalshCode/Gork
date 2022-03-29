@@ -63,7 +63,7 @@ void MainWindow::parseInput(string input){
         return;
     }
 
-    //    addStringToConsole(output);
+    //addStringToConsole(output);
     overwriteConsole(output);
     //ui->moneyLabel->setText(QString::fromStdString("Money: " + std::to_string(Zork::getMoney())));
 

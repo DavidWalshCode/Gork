@@ -23,7 +23,7 @@
       <x>390</x>
       <y>440</y>
       <width>261</width>
-      <height>91</height>
+      <height>103</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -92,7 +92,7 @@
       <x>760</x>
       <y>450</y>
       <width>169</width>
-      <height>71</height>
+      <height>74</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
@@ -118,7 +118,7 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="mapButton_2">
+      <widget class="QPushButton" name="interactButton">
        <property name="text">
         <string>Interact</string>
        </property>
