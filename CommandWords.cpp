@@ -2,10 +2,11 @@
 
 vector<string> CommandWords::validCommands;
 
-/**
+/*
  * Constructor - initialise the command words.
  */
-CommandWords::CommandWords() {
+CommandWords::CommandWords()
+{
 	// Populate the vector if we haven't already.
     if (validCommands.empty())
     {
@@ -19,31 +20,33 @@ CommandWords::CommandWords() {
 	}
 }
 
-/**
+/*
  * Check whether a given String is a valid command word.
  * Return true if it is, false if it isn't.
- **/
-bool CommandWords::isCommand(string aString)
+ */
+bool CommandWords::isCommand(string myCommand)
 {
 	for (unsigned int i = 0; i < validCommands.size(); i++)
 	{
-		if (validCommands[i].compare(aString) == 0)
+        if (validCommands[i].compare(myCommand) == 0)
         {
+            // myCommand is a command
 			return true;
         }
 	}
-    // If we get here, the string was not found in the commands
+
+    // myCommand is not a command
 	return false;
 }
 
 /*
- * Print all valid commands to System.out.
+ * Inserts all valid commands into a String
  */
 string CommandWords::showAllCommands()
 {
     string allValidCommands = "";
 
-    //Loops through validCommands and prints each to the screen.
+    // Loops through validCommands and prints each to the screen.
     for (unsigned int i = 0; i < validCommands.size() - 1; i++)
     {
         allValidCommands += validCommands.at(i) + ", ";

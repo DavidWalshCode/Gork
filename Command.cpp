@@ -44,4 +44,3 @@ bool Command::hasSecondWord()
 {
 	return (!secondWord.empty());
 }
-

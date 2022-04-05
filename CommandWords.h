@@ -11,14 +11,12 @@ class CommandWords
 
 public:
     CommandWords();
-    bool isCommand(string aString);
+    bool isCommand(string myCommand);
     string showAllCommands();
 
 private:
-	//Define a static vector for our valid command words.
-	//We'll populate this in the class constructor
+    // Define a static vector for our valid command words. We'll populate this in the class constructor
 	static vector<string> validCommands;
 };
-
 
 #endif /*COMMANDWORDS_H_*/
