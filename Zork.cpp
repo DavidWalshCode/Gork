@@ -3,10 +3,12 @@
 #include <cstdlib>
 #include <iterator>
 #include <QApplication>
+#include <QTextStream>
+#include <QDebug>
 
-#include "Zork.h"
 #include "mainwindow.h"
 #include "TextContent.h"
+#include "Zork.h"
 
 using namespace std;
 
@@ -40,6 +42,7 @@ Zork::Zork()
 
 void Zork::createRooms()
 {
+    // Creating rooms
     Room a("a");
     a.addItem(Item("x", 1, 11));
     a.addItem(Item("y", 2, 22));
@@ -57,7 +60,8 @@ void Zork::createRooms()
          i("i"),
          j("j");
 
-//             (N,   E,   S,   W)
+    // Setting exits
+    //         (N,   E,   S,   W)
     a.setExits("f", "b", "d", "c");
     b.setExits("", "", "", "a");
     c.setExits("", "a", "", "");
@@ -80,14 +84,14 @@ void Zork::createRooms()
     rooms.emplace("i", i);
     rooms.emplace("j", j);
 
+    // Start off in this room
     setCurrentRoom("a");
 }
 
 /**
  * Given a command, process (that is: execute) the command.
- * If this command ends the ZorkUL game, true is returned, otherwise false is returned.
  */
-string Zork::processCommand(Command command)
+string Zork::processCommand(Command& command, MainWindow* window)
 {
     string output = "";
 
@@ -120,6 +124,17 @@ string Zork::processCommand(Command command)
     {
         cout << "You begin walking" << endl;
         go(command);
+
+        if (go(command))
+        {
+            Zork::updateRoom(currentRoom, window);
+            output += currentRoom->longDescription();
+        }
+        else
+        {
+            output += TextContent::inputError;
+        }
+
     }
     else if (commandWord.compare("teleport") == 0)
     {
@@ -155,22 +170,6 @@ string Zork::processCommand(Command command)
             }
         }
     }
-    else if (commandWord.compare("put") == 0)
-    {
-
-    }
-    /*
-    {
-    if (!command.hasSecondWord()) {
-		cout << "incomplete input"<< endl;
-        }
-        else
-            if (command.hasSecondWord()) {
-            cout << "you're adding " + command.getSecondWord() << endl;
-            itemsInRoom.push_Back;
-        }
-    }
-*/
     else if (commandWord.compare("quit") == 0)
     {
         if (command.hasSecondWord())

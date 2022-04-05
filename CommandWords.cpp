@@ -14,7 +14,6 @@ CommandWords::CommandWords() {
         validCommands.push_back("teleport");
         validCommands.push_back("random");
 		validCommands.push_back("take");
-		validCommands.push_back("put");
         validCommands.push_back("info");
         validCommands.push_back("quit");
 	}

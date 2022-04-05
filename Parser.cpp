@@ -64,5 +64,5 @@ Command* Parser::getCommand()
  */
 void Parser::showCommands()
 {
-	commands->showAll();
+    commands->showAllCommands();
 }

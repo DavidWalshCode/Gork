@@ -10,7 +10,6 @@ CONFIG += c++11
 
 SOURCES += \
     ../../../C++ Projects/Zork/Zork.cpp \
-    Character.cpp \
     Command.cpp \
     CommandWords.cpp \
     Item.cpp \
@@ -22,7 +21,6 @@ SOURCES += \
 
 HEADERS += \
     ../../../C++ Projects/Zork/Zork.h \
-    Character.h \
     Command.h \
     CommandWords.h \
     Item.h \

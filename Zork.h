@@ -5,6 +5,7 @@
 #include "Parser.h"
 #include "Room.h"
 #include "Item.h"
+#include "mainwindow.h"
 #include <iostream>
 #include <string>
 #include <map>
@@ -20,6 +21,7 @@ public:
 
     static void setParser(Parser *parser);
     static Parser* getParser();
+    string processCommand(Command& command, MainWindow* window);
 
 private:
     static Parser* parser;
@@ -27,7 +29,7 @@ private:
     map<string, Room> rooms;
 	void createRooms();
 	void printWelcome();
-    string processCommand(Command command);
+
     string printHelp();
     void go(Command command);
     void teleportRandomRoom();
