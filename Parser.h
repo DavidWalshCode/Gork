@@ -9,8 +9,9 @@ class Parser
 
 public:
     Parser();
-    Command* getCommand();
-    void showCommands();
+    ~Parser();
+    Command* commandConverter(string input);
+    string showCommandsAsString();
 
 private:
 	CommandWords *commands;
