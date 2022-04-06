@@ -31,7 +31,7 @@ private:
 	void printWelcome();
 
     string printHelp();
-    void go(Command command);
+    bool go(Command command);
     void teleportRandomRoom();
     void teleportRoom(Command command);
     void createItems();

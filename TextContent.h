@@ -13,4 +13,17 @@ struct TextContent {
     const static string noMoreRooms;
 };
 
+/*
+namespace GeneralText {
+const string welcomeD = "";
+
+
+}
+
+namespace RoomText {
+const string roomA = "";
+
+
+}*/
+
 #endif // TEXTCONTENT_H

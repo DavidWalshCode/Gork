@@ -43,7 +43,7 @@ string Room::exitString()
     for (auto i = exits.begin(); i != exits.end(); i++)
     {
         // Loop through map
-        returnString += "  " + i->first;	// Access the "first" element of the pair (direction as a string)
+        returnString += "  " + i->first; // Access the "first" element of the pair (direction as a string)
     }
 
 	return returnString;

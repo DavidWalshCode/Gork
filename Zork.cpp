@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Parser *Zork::parser;
+Parser* Zork::parser;
 
 int main(int argc, char* argv[])
 {
@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.setWindowState(Qt::WindowMaximized);
-    MainWindow *windowPtr = &w;
+    MainWindow* windowPtr = &w;
     w.show();
     w.clearConsole();
 
@@ -127,7 +127,7 @@ string Zork::processCommand(Command& command, MainWindow* window)
 
         if (go(command))
         {
-            Zork::updateRoom(currentRoom, window);
+            Zork::updateRoom(currentRoom, window); // Zork::updateRoom(currentRoom, window);
             output += currentRoom->longDescription();
         }
         else
@@ -136,15 +136,17 @@ string Zork::processCommand(Command& command, MainWindow* window)
         }
 
     }
-    else if (commandWord.compare("teleport") == 0)
-    {
-        cout << "Green mystical light soars through you and visions of endless possibilites appear" << endl;
-        teleportRoom(command);
-    }
     else if (commandWord.compare("random") == 0)
     {
-        cout << "You are chaos incarnate" << endl;
+        //cout << "You are chaos incarnate" << endl;
         teleportRandomRoom();
+        output += currentRoom->longDescription();
+    }
+    /*
+    else if (commandWord.compare("teleport") == 0)
+    {
+        //cout << "Green mystical light soars through you and visions of endless possibilites appear" << endl;
+        teleportRoom(command);
     }
     else if (commandWord.compare("take") == 0)
     {
@@ -169,12 +171,12 @@ string Zork::processCommand(Command& command, MainWindow* window)
                 cout << currentRoom->longDescription() << endl;
             }
         }
-    }
+    } */
     else if (commandWord.compare("quit") == 0)
     {
         if (command.hasSecondWord())
         {
-            cout << "Overdefined input"<< endl;
+            output += TextContent::inputError;
         }
         else
         {
@@ -190,22 +192,42 @@ string Zork::processCommand(Command& command, MainWindow* window)
 /** COMMANDS **/
 string Zork::printHelp()
 {
-    string output = "Captain here are the commands you can shout to the crew: ";
-    output += Zork::parser->showAllCommands();
+    string output = "Captain here are the commands you can shout to the crew:/n";
+    output += Zork::parser->showCommandsAsString();
     return output;
 }
 
-void Zork::go(Command command)
+bool Zork::go(Command command)
 {
     if (!command.hasSecondWord())
     {
         cout << "Incomplete input" << endl;
-        return;
+        return false;
     }
 
     string direction = command.getSecondWord();
 
     go(direction);
+    return true;
+}
+
+void Zork::go(string direction)
+{
+    // Make the direction lowercase
+    // transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
+    // Move to the next room
+    string nextRoom = currentRoom->nextRoom(direction);
+
+    if (nextRoom.empty())
+    {
+        return;
+        //cout << "You can't move in that direction" << endl;
+    }
+    else
+    {
+        setCurrentRoom(nextRoom);
+        //cout << currentRoom->longDescription() << endl;
+    }
 }
 
 void Zork::teleportRandomRoom()
@@ -215,7 +237,7 @@ void Zork::teleportRandomRoom()
 
     setCurrentRoom(it->first);
 
-    cout << currentRoom->longDescription() << endl;
+    //cout << currentRoom->longDescription() << endl;
 }
 
 void Zork::teleportRoom(Command command)
@@ -230,24 +252,6 @@ void Zork::teleportRoom(Command command)
     setCurrentRoom(destination);
 
     cout << currentRoom->longDescription() << endl;
-}
-
-void Zork::go(string direction)
-{
-    // Make the direction lowercase
-    // transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
-    // Move to the next room
-    string nextRoom = currentRoom->nextRoom(direction);
-
-    if (nextRoom.empty())
-    {
-        cout << "You can't move in that direction" << endl;
-    }
-    else
-    {
-        setCurrentRoom(nextRoom);
-        cout << currentRoom->longDescription() << endl;
-    }
 }
 
 void Zork::setCurrentRoom(string name)
