@@ -4,7 +4,9 @@
 #include "TextContent.h"
 #include <QMessageBox>
 #include <QDebug>
+#include <QTextEdit>
 
+//Constructor
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
       ui(new Ui::MainWindow)
@@ -51,8 +53,7 @@ void MainWindow::overwriteConsole(string input){
 
 // Trying to convert input to a command and printing out the appropriate output.
 void MainWindow::parseInput(string input){
-    Command *command = Zork::getParser()->convertToCommand(input);
-    //    addStringToConsole("> " + input + "\n");
+    Command *command = Zork::getParser()->commandConverter(input);
     overwriteConsole("> " + input + "\n");
     string output = Zork::processCommand(*command, this);
 
@@ -65,7 +66,6 @@ void MainWindow::parseInput(string input){
 
     //addStringToConsole(output);
     overwriteConsole(output);
-    //ui->moneyLabel->setText(QString::fromStdString("Money: " + std::to_string(Zork::getMoney())));
 
     delete command;
 
@@ -100,9 +100,9 @@ void MainWindow::on_mapButton_pressed()
     parseInput("map");
 }
 
-void MainWindow::on_interactButton_pressed()
+void MainWindow::on_infoButton_pressed()
 {
-    parseInput("take");
+    parseInput("info");
 }
 
 void MainWindow::on_teleportButton_pressed()

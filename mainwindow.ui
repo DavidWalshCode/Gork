@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1026</width>
+    <width>1035</width>
     <height>596</height>
    </rect>
   </property>
@@ -78,8 +78,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>310</x>
-      <y>10</y>
+      <x>330</x>
+      <y>30</y>
       <width>701</width>
       <height>401</height>
      </rect>
@@ -118,9 +118,9 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QPushButton" name="interactButton">
+      <widget class="QPushButton" name="infoButton">
        <property name="text">
-        <string>Interact</string>
+        <string>Info</string>
        </property>
       </widget>
      </item>
@@ -132,8 +132,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1026</width>
-     <height>25</height>
+     <width>1035</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
