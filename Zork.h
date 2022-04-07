@@ -13,30 +13,35 @@ using namespace std;
 
 class Zork
 {
-
 public:
     Zork();
-    void play();
-    void go(string direction);
+    static void go(string direction);
+    static bool go(Command command);
 
     static void setParser(Parser *parser);
     static Parser* getParser();
-    string processCommand(Command& command, MainWindow* window);
+
+    static void createRooms();
+    static string processCommand(Command& command);
 
 private:
-    static Parser* parser;
-	Room *currentRoom;
-    map<string, Room> rooms;
-	void createRooms();
-	void printWelcome();
 
-    string printHelp();
-    bool go(Command command);
-    void teleportRandomRoom();
-    void teleportRoom(Command command);
-    void createItems();
-    void displayItems();
-    void setCurrentRoom(string name);
+
+    static Room* currentRoom;
+    static map<string, Room> rooms;
+
+    static string showHelp();
+
+    static Parser* parser;
+    static void setCurrentRoom(string name);
+
+    static void teleportRandomRoom();
+    static void teleportRoom(Command command);
+
+    static void createItems();
+    static void displayItems();
+
+    static void deleteAll();
 };
 
 #endif /*ZORK_H_*/

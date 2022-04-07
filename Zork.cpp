@@ -10,8 +10,10 @@
 #include "TextContent.h"
 #include "Zork.h"
 
-using namespace std;
+//using namespace std;
 
+map<string, Room> rooms;
+Room* currentRoom;
 Parser* Zork::parser;
 
 int main(int argc, char* argv[])
@@ -22,7 +24,7 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     MainWindow w;
     w.setWindowState(Qt::WindowMaximized);
-    MainWindow* windowPtr = &w;
+    //MainWindow* windowPtr = &w;
     w.show();
     w.clearConsole();
 
@@ -88,10 +90,27 @@ void Zork::createRooms()
     setCurrentRoom("a");
 }
 
-/**
+/*
+// Cleanup
+void Zork::deleteAll()
+{
+    for(auto& room : rooms){
+        delete rooms;
+    }
+
+    for(auto& item : Zork::itemsInInventory){
+        delete item;
+    }
+
+    Zork::getAllRooms().clear();
+    Zork::itemsInInventory.clear();
+
+}*/
+
+/*
  * Given a command, process (that is: execute) the command.
  */
-string Zork::processCommand(Command& command, MainWindow* window)
+string Zork::processCommand(Command& command)
 {
     string output = "";
 
@@ -105,7 +124,7 @@ string Zork::processCommand(Command& command, MainWindow* window)
 
     if (commandWord.compare("info") == 0)
     {
-        output += printHelp();
+        output += showHelp();
     }
     else if (commandWord.compare("map") == 0)
     {
@@ -122,12 +141,10 @@ string Zork::processCommand(Command& command, MainWindow* window)
     }
     else if (commandWord.compare("go") == 0)
     {
-        cout << "You begin walking" << endl;
-        go(command);
-
-        if (go(command))
+        // If the go command works, execute it
+        if (go(command) == true)
         {
-            Zork::updateRoom(currentRoom, window); // Zork::updateRoom(currentRoom, window);
+            go(command);
             output += currentRoom->longDescription();
         }
         else
@@ -138,8 +155,8 @@ string Zork::processCommand(Command& command, MainWindow* window)
     }
     else if (commandWord.compare("random") == 0)
     {
-        //cout << "You are chaos incarnate" << endl;
         teleportRandomRoom();
+        output += TextContent::onTeleport;
         output += currentRoom->longDescription();
     }
     /*
@@ -189,8 +206,10 @@ string Zork::processCommand(Command& command, MainWindow* window)
     return output;
 }
 
-/** COMMANDS **/
-string Zork::printHelp()
+/*
+ * Returns all commands as a string
+ */
+string Zork::showHelp()
 {
     string output = "Captain here are the commands you can shout to the crew:/n";
     output += Zork::parser->showCommandsAsString();
@@ -201,13 +220,12 @@ bool Zork::go(Command command)
 {
     if (!command.hasSecondWord())
     {
-        cout << "Incomplete input" << endl;
         return false;
     }
 
     string direction = command.getSecondWord();
-
     go(direction);
+
     return true;
 }
 
@@ -236,10 +254,9 @@ void Zork::teleportRandomRoom()
     advance(it, rand() % rooms.size());
 
     setCurrentRoom(it->first);
-
-    //cout << currentRoom->longDescription() << endl;
 }
 
+/*
 void Zork::teleportRoom(Command command)
 {
     if (!command.hasSecondWord())
@@ -252,7 +269,7 @@ void Zork::teleportRoom(Command command)
     setCurrentRoom(destination);
 
     cout << currentRoom->longDescription() << endl;
-}
+}*/
 
 void Zork::setCurrentRoom(string name)
 {
@@ -268,6 +285,7 @@ void Zork::setParser(Parser *parser){
     Zork::parser = parser;
 }
 
-Parser* Zork::getParser(){
+// Inline function
+inline Parser* Zork::getParser(){
     return Zork::parser;
 }
