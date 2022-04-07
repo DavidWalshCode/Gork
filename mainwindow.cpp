@@ -4,7 +4,7 @@
 #include "TextContent.h"
 
 #include <QMessageBox>
-#include <QTextEdit>
+//#include <QTextEdit>
 #include <QDebug>
 #include <QKeyEvent>
 #include <QScrollBar>
@@ -136,17 +136,6 @@ void MainWindow::teleportButtonPressed()
 
 void MainWindow::quitButtonPressed()
 {
-    // Notes about Message Boxes
-    /*
-        void about
-        void aboutQt
-        StandardButton critical
-        StandardButton information
-        StandardButton question
-        StandardButton warning
-        e.g. QMessageBox::question(this, "My Title", "This is my custom message");
-    */
-
     QMessageBox::StandardButton reply = QMessageBox::warning(this, "Forever Sleep", "Are you sure you want to go to sleep Captain?",
                                                               QMessageBox::Yes | QMessageBox::No);
 
