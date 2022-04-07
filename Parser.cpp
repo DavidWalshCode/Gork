@@ -1,5 +1,7 @@
 #include "Parser.h"
 
+using namespace zork;
+
 // Constructor
 Parser::Parser()
 {

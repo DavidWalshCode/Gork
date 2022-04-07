@@ -1,5 +1,7 @@
 #include "TextContent.h"
 
+using namespace zork;
+
 const string TextContent::welcome = "Welcome to the land of the living Captain. "
                                       "I can feel the eyes of the depths watching us, we better go now.\n";
 

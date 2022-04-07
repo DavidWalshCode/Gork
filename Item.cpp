@@ -1,5 +1,7 @@
 #include "Item.h"
 
+using namespace zork;
+
 Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/)
 {
 	description = inDescription;
@@ -17,7 +19,7 @@ void Item::setWeight(int inWeightGrams)
 {
     if (inWeightGrams > 9999 || inWeightGrams < 0)
     {
-       cout << "weight invalid, must be 0 < weight < 9999" ;
+       std::cout << "weight invalid, must be 0 < weight < 9999" ;
     }
     else
     {
@@ -29,7 +31,7 @@ void Item::setValue(float inValue)
 {
     if (inValue > 9999 || inValue < 0)
     {
-       cout << "value invalid, must be 0 < value < 9999";
+       std::cout << "value invalid, must be 0 < value < 9999";
     }
     else
     {

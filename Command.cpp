@@ -1,5 +1,7 @@
 #include "Command.h"
 
+using namespace zork;
+
 /*
  * Create a command object. First and second word must be supplied, but
  * either one (or both) can be null. The command word should be null to

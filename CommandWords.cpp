@@ -1,5 +1,7 @@
 #include "CommandWords.h"
 
+using namespace zork;
+
 vector<string> CommandWords::validCommands;
 
 /*

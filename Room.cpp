@@ -1,6 +1,8 @@
 #include "Room.h"
 #include "Command.h"
 
+using namespace zork;
+
 Room::Room(string name)
 {
     this->name = name;

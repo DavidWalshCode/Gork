@@ -4,6 +4,9 @@
 #include <string>
 using std::string;
 
+namespace zork
+{
+
 // Struct containing different texts that need to be printed out
 struct TextContent {
     static string printCurrentRoom(string& description);
@@ -15,6 +18,8 @@ struct TextContent {
 
     unsigned int timesTravelled = 4;
 };
+
+}
 
 /*
 namespace GeneralText {

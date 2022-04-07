@@ -2,7 +2,10 @@
 #define COMMAND_H_
 
 #include <string>
-using namespace std;
+using std::string;
+
+namespace zork
+{
 
 class Command
 {
@@ -17,5 +20,7 @@ private:
 	string commandWord;
 	string secondWord;
 };
+
+}
 
 #endif /*COMMAND_H_*/

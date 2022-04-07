@@ -9,12 +9,14 @@
 #include <iostream>
 #include <string>
 #include <map>
-using namespace std;
+
+// Namespace, all Zork game logic should live inside the zork namespace
+namespace zork
+{
 
 class Zork
 {
 public:
-    Zork();
     static void go(string direction);
     static bool go(Command command);
 
@@ -23,6 +25,8 @@ public:
 
     static void createRooms();
     static string processCommand(Command& command);
+
+    static void deleteAll();
 
 private:
     static Room* currentRoom;
@@ -38,8 +42,8 @@ private:
 
     static void createItems();
     static void displayItems();
-
-    static void deleteAll();
 };
+
+}
 
 #endif /*ZORK_H_*/

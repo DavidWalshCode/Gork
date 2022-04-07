@@ -5,8 +5,13 @@
 #include <string>
 #include <vector>
 #include "Item.h"
-using namespace std;
+
+using std::string;
+using std::map;
 using std::vector;
+
+namespace zork
+{
 
 class Room
 {
@@ -28,5 +33,7 @@ private:
 	string exitString();
 	vector <Item> itemsInRoom;
 };
+
+}
 
 #endif

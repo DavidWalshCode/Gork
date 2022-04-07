@@ -4,7 +4,11 @@
 #include <map>
 #include <string>
 #include <iostream>
-using namespace std;
+
+using std::string;
+
+namespace zork
+{
 
 class Item
 {
@@ -27,5 +31,7 @@ private:
 	float value;
 	bool weaponCheck;
 };
+
+}
 
 #endif /*ITEM_H_*/

@@ -4,7 +4,12 @@
 #include <iostream>
 #include <string>
 #include <vector>
-using namespace std;
+
+using std::string;
+using std::vector;
+
+namespace zork
+{
 
 class CommandWords
 {
@@ -17,5 +22,7 @@ private:
     // Define a static vector for our valid command words. We'll populate this in the class constructor
 	static vector<string> validCommands;
 };
+
+}
 
 #endif /*COMMANDWORDS_H_*/

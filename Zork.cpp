@@ -10,31 +10,11 @@
 #include "TextContent.h"
 #include "Zork.h"
 
+using namespace zork;
+
 map<string, Room*> Zork::rooms;
 Room* Zork::currentRoom;
 Parser* Zork::parser;
-
-int main(int argc, char* argv[])
-{
-    Parser* parser = new Parser();
-    Zork::setParser(parser);
-    Zork::createRooms();
-
-    QApplication a(argc, argv);
-    MainWindow w;
-    //w.setWindowState(Qt::WindowMaximized);
-    //MainWindow* windowPtr = &w;
-    w.show();
-    w.clearConsole();
-
-    w.addStringToConsole(TextContent::welcome);
-    //ZorkUL::updateRoom(ZorkUL::getCurrentRoom(), windowPtr);
-    //string roomDescription = ZorkUL::getCurrentRoom()->getShortDescription();
-    //w.addStringToConsole(Dialogues::printCurrentRoom(roomDescription));
-
-    delete Zork::getParser();
-    return a.exec();
-}
 
 void Zork::createRooms()
 {
@@ -92,22 +72,17 @@ void Zork::createRooms()
     setCurrentRoom(a);
 }
 
-/*
-// Cleanup
+// Memory management
 void Zork::deleteAll()
 {
-    for(auto& room : rooms){
-        delete rooms;
+    //pair<const string, Room*>&
+    for (auto& p : rooms)
+    {
+        delete p.second;
     }
 
-    for(auto& item : Zork::itemsInInventory){
-        delete item;
-    }
-
-    Zork::getAllRooms().clear();
-    Zork::itemsInInventory.clear();
-
-}*/
+    delete parser;
+}
 
 /*
  * Given a command, process (that is: execute) the command.
@@ -276,12 +251,12 @@ void Zork::teleportRoom(Command command)
 
 void Zork::setCurrentRoom(Room* name)
 {
-//    auto it = rooms.find(name);
+    //    auto it = rooms.find(name);
 
-//    if (it != rooms.end())
-//    {
-//        currentRoom = &it->second;
-//    }
+    //    if (it != rooms.end())
+    //    {
+    //        currentRoom = &it->second;
+    //    }
     currentRoom = name;
 }
 

@@ -8,6 +8,8 @@
 #include <QKeyEvent>
 #include <QScrollBar>
 
+using namespace zork;
+
 //Constructor
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

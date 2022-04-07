@@ -17,6 +17,7 @@ SOURCES += \
     Room.cpp \
     TextContent.cpp \
     Zork.cpp \
+    main.cpp \
     mainwindow.cpp
 
 HEADERS += \

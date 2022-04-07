@@ -4,6 +4,9 @@
 #include "Command.h"
 #include "CommandWords.h"
 
+namespace zork
+{
+
 class Parser
 {
 public:
@@ -15,5 +18,7 @@ public:
 private:
 	CommandWords *commands;
 };
+
+}
 
 #endif /*PARSER_H_*/
