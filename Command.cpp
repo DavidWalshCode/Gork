@@ -13,6 +13,13 @@ Command::Command(string firstWord, string secondWord)
 	this->secondWord = secondWord;
 }
 
+// Copy constructor
+Command::Command(const Command& command) :
+    Command(command.commandWord, command.secondWord)
+{
+
+}
+
 /*
  * Return the command word (the first word) of this command. If the
  * command was not understood, the result is null.

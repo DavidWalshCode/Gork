@@ -11,6 +11,8 @@ class Command
 {
 public:
     Command(string firstWord, string secondWord);
+    Command(const Command& command);
+
     string getCommandWord();
     string getSecondWord();
     bool isUnknown();
