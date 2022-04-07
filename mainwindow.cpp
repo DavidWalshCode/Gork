@@ -79,8 +79,9 @@ void MainWindow::inputTextChanged()
 // Trying to convert input to a command and printing out the appropriate output.
 void MainWindow::parseInput(const string &input)
 {
+    Parser& parser = *Zork::getParser();
 
-    Command* command = Zork::getParser()->commandConverter(input);
+    Command* command = parser(input);
 
     string inputString = "> " + input + "\n\n";
 
