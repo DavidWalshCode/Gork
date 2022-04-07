@@ -14,6 +14,7 @@ Parser::~Parser()
     delete commands;
 }
 
+// Command Converter
 Command* Parser::operator()(string input)
 {
     string word1, word2;

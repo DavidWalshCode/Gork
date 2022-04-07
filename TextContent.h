@@ -14,6 +14,7 @@ struct TextContent {
     const static string welcome;
     const static string inputError;
     const static string noMoreRooms;
+    const static string onGo;
     const static string onTeleport;
     const static string showMap;
 
@@ -21,18 +22,5 @@ struct TextContent {
 };
 
 }
-
-/*
-namespace GeneralText {
-const string welcomeD = "";
-
-
-}
-
-namespace RoomText {
-const string roomA = "";
-
-
-}*/
 
 #endif // TEXTCONTENT_H

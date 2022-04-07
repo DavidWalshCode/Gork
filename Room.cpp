@@ -35,12 +35,12 @@ string Room::shortDescription()
 
 string Room::longDescription()
 {
-    return "Island = " + name + "\n" + displayItem() + exitString();
+    return "Island: " + name + "\n" + displayItem() + exitString();
 }
 
 string Room::exitString()
 {
-    string exitString = "\nWays to travel =";
+    string exitString = "\nWays to travel:";
 
     for (auto i = exits.begin(); i != exits.end(); i++)
     {
@@ -70,7 +70,7 @@ void Room::addItem(Item item)
 
 string Room::displayItem()
 {
-    string tempString = "Items around = ";
+    string tempString = "Items around: ";
     int sizeItems = (itemsInRoom.size());
 
     if (itemsInRoom.size() < 1)

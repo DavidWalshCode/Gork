@@ -9,19 +9,22 @@ const string TextContent::inputError = "What did you say Captain? The crew didn'
 
 const string TextContent::noMoreRooms = "No more areas this way. We must try another direction Captain.\n";
 
+const string TextContent::onGo = "Set sail you dirty bigle rats! Much love to you all.\n";
+
 const string TextContent::onTeleport = "Get the ship's mage! You are chaos incarnate, green mystical light soars through you and visions of endless possibilites appear. "
                                        "You do not get time to chosoe however.\n";
 
-const string TextContent::showMap = "[h] --- [f] --- [g]"
-                                    "         |         "
-                                    "         |         "
-                                    "[c] --- [a] --- [b]"
-                                    "         |         "
-                                    "         |         "
-                                    "[i] --- [d] --- [e]"
-                                    "         |         "
-                                    "         |         "
-                                    "        [j]        ";
+const string TextContent::showMap = "Captain here be the rum soaked map!\n"
+                                    "[h] --- [f] --- [g]\n"
+                                    "           |         \n"
+                                    "           |         \n"
+                                    "[c] --- [a] --- [b]\n"
+                                    "           |         \n"
+                                    "           |         \n"
+                                    "[i] --- [d] --- [e]\n"
+                                    "           |         \n"
+                                    "           |         \n"
+                                    "          [j]        \n";
 
 string TextContent::printCurrentRoom(string& description)
 {
