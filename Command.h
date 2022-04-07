@@ -6,7 +6,6 @@ using namespace std;
 
 class Command
 {
-
 public:
     Command(string firstWord, string secondWord);
     string getCommandWord();
