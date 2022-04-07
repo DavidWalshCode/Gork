@@ -8,7 +8,6 @@ using namespace std;
 
 class Item
 {
-
 public:
     Item (string description, int inWeight, float inValue);
     Item (string description);

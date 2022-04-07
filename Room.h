@@ -10,7 +10,6 @@ using std::vector;
 
 class Room
 {
-
 public:
 	Room(string name);
 	int numberOfItems();
