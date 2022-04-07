@@ -17,7 +17,6 @@ Command::Command(string firstWord, string secondWord)
 Command::Command(const Command& command) :
     Command(command.commandWord, command.secondWord)
 {
-
 }
 
 /*
