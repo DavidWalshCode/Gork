@@ -14,7 +14,7 @@ Parser::~Parser()
     delete commands;
 }
 
-Command* Parser::commandConverter(string input)
+Command* Parser::operator()(string input)
 {
     string word1, word2;
 	vector<string> words;
