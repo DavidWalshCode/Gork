@@ -33,15 +33,13 @@ void MainWindow::clearConsole()
 // Printing to console
 void MainWindow::addStringToConsole(const string &input)
 {
-    //qDebug("Does this work?");
-    ui->outputConsole->setText(/*ui->outputConsole->text() +*/ QString::fromStdString("\n") + QString::fromStdString(input));
+    ui->outputConsole->setText(QString::fromStdString("\n") + QString::fromStdString(input));
 }
 
 // Printing to console
 void MainWindow::addQStringToConsole(const QString &input)
 {
-    //qDebug("Does this qwork?");
-    ui->outputConsole->setText(/*ui->outputConsole->text() +*/ QString::fromStdString("\n") + input);
+    ui->outputConsole->setText(QString::fromStdString("\n") + input);
 }
 
 // Clears the console and prints
@@ -136,7 +134,7 @@ void MainWindow::on_infoButton_released()
 
 void MainWindow::on_teleportButton_released()
 {
-    parseInput("random");
+    parseInput("teleport");
 }
 
 void MainWindow::on_quitButton_released()
@@ -146,11 +144,11 @@ void MainWindow::on_quitButton_released()
 
     if (reply == QMessageBox::Yes)
     {
-        QApplication::quit();
+        parseInput("quit");
     }
     else
     {
-       qDebug() << "No is clicked";
+       //qDebug() << "No is clicked";
     }
 }
 
