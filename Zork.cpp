@@ -105,16 +105,7 @@ string Zork::processCommand(Command& command)
     }
     else if (commandWord.compare("map") == 0)
     {
-        output += "[h] --- [f] --- [g]\n"
-                  "           |         \n"
-                  "           |         \n"
-                  "[c] --- [a] --- [b]\n"
-                  "           |         \n"
-                  "           |         \n"
-                  "[i] --- [d] --- [e]\n"
-                  "           |         \n"
-                  "           |         \n"
-                  "         [j]        \n";
+        output += TextContent::showMap;
     }
     else if (commandWord.compare("go") == 0)
     {

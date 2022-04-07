@@ -15,6 +15,7 @@ struct TextContent {
     const static string inputError;
     const static string noMoreRooms;
     const static string onTeleport;
+    const static string showMap;
 
     unsigned int timesTravelled = 4;
 };

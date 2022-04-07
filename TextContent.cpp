@@ -12,6 +12,17 @@ const string TextContent::noMoreRooms = "No more areas this way. We must try ano
 const string TextContent::onTeleport = "Get the ship's mage! You are chaos incarnate, green mystical light soars through you and visions of endless possibilites appear. "
                                        "You do not get time to chosoe however.\n";
 
+const string TextContent::showMap = "[h] --- [f] --- [g]"
+                                    "         |         "
+                                    "         |         "
+                                    "[c] --- [a] --- [b]"
+                                    "         |         "
+                                    "         |         "
+                                    "[i] --- [d] --- [e]"
+                                    "         |         "
+                                    "         |         "
+                                    "        [j]        ";
+
 string TextContent::printCurrentRoom(string& description)
 {
     return "We are currently in " + description + ", Captain. What is our next move?\n";
