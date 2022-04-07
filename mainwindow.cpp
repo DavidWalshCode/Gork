@@ -124,7 +124,6 @@ void MainWindow::on_westButton_released()
     parseInput("go west");
 }
 
-
 void MainWindow::on_mapButton_released()
 {
     parseInput("map");

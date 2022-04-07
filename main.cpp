@@ -21,12 +21,11 @@ int main(int argc, char* argv[])
     QApplication a(argc, argv);
     MainWindow w;
     //w.setWindowState(Qt::WindowMaximized);
-    //MainWindow* windowPtr = &w;
     w.show();
     w.clearConsole();
 
     w.addStringToConsole(TextContent::welcome);
-    //ZorkUL::updateRoom(ZorkUL::getCurrentRoom(), windowPtr);
+    //ZorkUL::updateRoom(ZorkUL::getCurrentRoom());
     //string roomDescription = ZorkUL::getCurrentRoom()->getShortDescription();
     //w.addStringToConsole(Dialogues::printCurrentRoom(roomDescription));
 
