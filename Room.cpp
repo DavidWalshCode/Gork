@@ -33,20 +33,20 @@ string Room::shortDescription()
 
 string Room::longDescription()
 {
-    return "Room = " + name + "\n" + displayItem() + exitString();
+    return "Island = " + name + "\n" + displayItem() + exitString();
 }
 
 string Room::exitString()
 {
-    string returnString = "\nExits =";
+    string exitString = "\nWays to travel =";
 
     for (auto i = exits.begin(); i != exits.end(); i++)
     {
         // Loop through map
-        returnString += "  " + i->first; // Access the "first" element of the pair (direction as a string)
+        exitString += "  " + i->first; // Access the "first" element of the pair (direction as a string)
     }
 
-	return returnString;
+    return exitString;
 }
 
 string Room::nextRoom(string direction)
@@ -70,12 +70,12 @@ void Room::addItem(Item item)
 
 string Room::displayItem()
 {
-    string tempString = "Items in room = ";
+    string tempString = "Items around = ";
     int sizeItems = (itemsInRoom.size());
 
     if (itemsInRoom.size() < 1)
     {
-        tempString = "No items in room";
+        tempString = "No items around";
     }
     else if (itemsInRoom.size() > 0)
     {
