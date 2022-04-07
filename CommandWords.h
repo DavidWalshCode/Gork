@@ -8,7 +8,6 @@ using namespace std;
 
 class CommandWords
 {
-
 public:
     CommandWords();
     bool isCommand(string myCommand);
