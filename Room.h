@@ -13,10 +13,10 @@ class Room
 public:
 	Room(string name);
 	int numberOfItems();
-	void setExits(string north, string east, string south, string west);
+    void setExits(Room* north, Room* east, Room* south, Room* west);
 	string shortDescription();
 	string longDescription();
-	string nextRoom(string direction);
+    Room* nextRoom(string direction);
 	void addItem(Item item);
 	string displayItem();
 	int isItemInRoom(string inString);
@@ -24,7 +24,7 @@ public:
 
 private:
 	string name;
-	map<string, string> exits;
+    map<string, Room*> exits;
 	string exitString();
 	vector <Item> itemsInRoom;
 };

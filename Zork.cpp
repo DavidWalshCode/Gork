@@ -10,20 +10,19 @@
 #include "TextContent.h"
 #include "Zork.h"
 
-//using namespace std;
-
-map<string, Room> rooms;
-Room* currentRoom;
+map<string, Room*> Zork::rooms;
+Room* Zork::currentRoom;
 Parser* Zork::parser;
 
 int main(int argc, char* argv[])
 {
     Parser* parser = new Parser();
     Zork::setParser(parser);
+    Zork::createRooms();
 
     QApplication a(argc, argv);
     MainWindow w;
-    w.setWindowState(Qt::WindowMaximized);
+    //w.setWindowState(Qt::WindowMaximized);
     //MainWindow* windowPtr = &w;
     w.show();
     w.clearConsole();
@@ -37,43 +36,46 @@ int main(int argc, char* argv[])
     return a.exec();
 }
 
-Zork::Zork()
-{
-	createRooms();
-}
-
 void Zork::createRooms()
 {
     // Creating rooms
-    Room a("a");
-    a.addItem(Item("x", 1, 11));
-    a.addItem(Item("y", 2, 22));
+    Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *j;
 
-    Room b("b");
-    b.addItem(Item("xx", 3, 33));
-    b.addItem(Item("yy", 4, 44));
+    a = new Room("a");
+    b = new Room("b");
+    c = new Room("c");
+    d = new Room("d");
+    e = new Room("e");
+    f = new Room("f");
+    g = new Room("g");
+    h = new Room("h");
+    i = new Room("i");
+    j = new Room("j");
 
-    Room c("c"),
-         d("d"),
-         e("e"),
-         f("f"),
-         g("g"),
-         h("h"),
-         i("i"),
-         j("j");
+    // Creating items
+    Item x("x", 2, 11);
+    Item y("y", 2, 22);
+    Item xx("xx", 3, 33);
+    Item yy("yy", 4, 44);
+
+    // Adding items to rooms
+    a->addItem(x);
+    a->addItem(y);
+    b->addItem(xx);
+    b->addItem(yy);
 
     // Setting exits
     //         (N,   E,   S,   W)
-    a.setExits("f", "b", "d", "c");
-    b.setExits("", "", "", "a");
-    c.setExits("", "a", "", "");
-    d.setExits("a", "e", "j", "i");
-    e.setExits("", "", "", "d");
-    f.setExits("", "g", "a", "h");
-    g.setExits("", "", "", "f");
-    h.setExits("", "f", "", "");
-    i.setExits("", "d", "", "");
-    j.setExits("d", "", "", "");
+    a->setExits(f, b, d, c);
+    b->setExits(NULL, NULL, NULL, a);
+    c->setExits(NULL, a, NULL, NULL);
+    d->setExits(a, e, j, i);
+    e->setExits(NULL, NULL, NULL, d);
+    f->setExits(NULL, g, a, h);
+    g->setExits(NULL, NULL, NULL, f);
+    h->setExits(NULL, f, NULL, NULL);
+    i->setExits(NULL, d, NULL, NULL);
+    j->setExits(d, NULL, NULL, NULL);
 
     rooms.emplace("a", a);
     rooms.emplace("b", b);
@@ -87,7 +89,7 @@ void Zork::createRooms()
     rooms.emplace("j", j);
 
     // Start off in this room
-    setCurrentRoom("a");
+    setCurrentRoom(a);
 }
 
 /*
@@ -128,23 +130,23 @@ string Zork::processCommand(Command& command)
     }
     else if (commandWord.compare("map") == 0)
     {
-        output += "[h] --- [f] --- [g]"
-                  "         |         "
-                  "         |         "
-                  "[c] --- [a] --- [b]"
-                  "         |         "
-                  "         |         "
-                  "[i] --- [d] --- [e]"
-                  "         |         "
-                  "         |         "
-                  "        [j]        ";
+        output += "[h] --- [f] --- [g]\n"
+                  "           |         \n"
+                  "           |         \n"
+                  "[c] --- [a] --- [b]\n"
+                  "           |         \n"
+                  "           |         \n"
+                  "[i] --- [d] --- [e]\n"
+                  "           |         \n"
+                  "           |         \n"
+                  "         [j]        \n";
     }
     else if (commandWord.compare("go") == 0)
     {
         // If the go command works, execute it
         if (go(command) == true)
         {
-            go(command);
+            //go(command);
             output += currentRoom->longDescription();
         }
         else
@@ -201,7 +203,7 @@ string Zork::processCommand(Command& command)
         }
 
         exit(0); // signal to quit
-	}
+    }
 
     return output;
 }
@@ -211,7 +213,7 @@ string Zork::processCommand(Command& command)
  */
 string Zork::showHelp()
 {
-    string output = "Captain here are the commands you can shout to the crew:/n";
+    string output = "Captain here are the commands you can shout to the crew:\n";
     output += Zork::parser->showCommandsAsString();
     return output;
 }
@@ -234,9 +236,9 @@ void Zork::go(string direction)
     // Make the direction lowercase
     // transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
     // Move to the next room
-    string nextRoom = currentRoom->nextRoom(direction);
+    Room* nextRoom = currentRoom->nextRoom(direction);
 
-    if (nextRoom.empty())
+    if (nextRoom == NULL)
     {
         return;
         //cout << "You can't move in that direction" << endl;
@@ -253,7 +255,8 @@ void Zork::teleportRandomRoom()
     auto it = rooms.begin();
     advance(it, rand() % rooms.size());
 
-    setCurrentRoom(it->first);
+    // Need to update teleport func because of room change
+    //setCurrentRoom(it->first);
 }
 
 /*
@@ -271,21 +274,21 @@ void Zork::teleportRoom(Command command)
     cout << currentRoom->longDescription() << endl;
 }*/
 
-void Zork::setCurrentRoom(string name)
+void Zork::setCurrentRoom(Room* name)
 {
-    auto it = rooms.find(name);
+//    auto it = rooms.find(name);
 
-    if (it != rooms.end())
-    {
-        currentRoom = &it->second;
-    }
+//    if (it != rooms.end())
+//    {
+//        currentRoom = &it->second;
+//    }
+    currentRoom = name;
 }
 
 void Zork::setParser(Parser *parser){
     Zork::parser = parser;
 }
 
-// Inline function
-inline Parser* Zork::getParser(){
+Parser* Zork::getParser(){
     return Zork::parser;
 }

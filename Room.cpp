@@ -6,23 +6,23 @@ Room::Room(string name)
     this->name = name;
 }
 
-void Room::setExits(string north, string east, string south, string west)
+void Room::setExits(Room* north, Room* east, Room* south, Room* west)
 {
-    if (!north.empty())
+    if (north != NULL)
     {
         exits["north"] = north;
     }
-    if (!east.empty())
+    if (east != NULL)
     {
         exits["east"] = east;
     }
-    if (!south.empty())
+    if (south != NULL)
     {
-		exits["south"] = south;
+        exits["south"] = south;
     }
-    if (!west.empty())
+    if (west != NULL)
     {
-		exits["west"] = west;
+        exits["west"] = west;
     }
 }
 
@@ -49,16 +49,14 @@ string Room::exitString()
     return exitString;
 }
 
-string Room::nextRoom(string direction)
+Room* Room::nextRoom(string direction)
 {
-    auto next = exits.find(direction); // Returns an iterator for the "pair"
-
-    if (next == exits.end())
-    {
-        return ""; // If exits.end() was returned, there's no room in that direction.
+    map<string, Room*>::iterator next = exits.find(direction); //returns an iterator for the "pair"
+    if (next == exits.end()){
+        return NULL; // if exits.end() was returned, there's no room in that direction.
     }
-
-    return next->second; // If there is a room, return the name
+    return next->second; // If there is a room, remove the "second" (Room*)
+    // part of the "pair" (<string, Room*>) and return it.
 }
 
 void Room::addItem(Item item)
@@ -118,8 +116,8 @@ int Room::isItemInRoom(string inString)
             }
 
             x++;
-            }
         }
+    }
 
     return -1;
 }

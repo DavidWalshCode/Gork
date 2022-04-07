@@ -4,7 +4,6 @@
 #include "TextContent.h"
 
 #include <QMessageBox>
-//#include <QTextEdit>
 #include <QDebug>
 #include <QKeyEvent>
 #include <QScrollBar>
@@ -15,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //ui->inputConsole->setFocus();
+    ui->inputConsole->setFocus();
 }
 
 // Destructor
@@ -33,14 +32,14 @@ void MainWindow::clearConsole()
 void MainWindow::addStringToConsole(const string &input)
 {
     //qDebug("Does this work?");
-    ui->outputConsole->setText(ui->outputConsole->text() + QString::fromStdString("\n") + QString::fromStdString(input));
+    ui->outputConsole->setText(/*ui->outputConsole->text() +*/ QString::fromStdString("\n") + QString::fromStdString(input));
 }
 
 // Printing to console
 void MainWindow::addQStringToConsole(const QString &input)
 {
     //qDebug("Does this qwork?");
-    ui->outputConsole->setText(ui->outputConsole->text() + QString::fromStdString("\n") + input);
+    ui->outputConsole->setText(/*ui->outputConsole->text() +*/ QString::fromStdString("\n") + input);
 }
 
 // Clears the console and prints
@@ -78,6 +77,7 @@ void MainWindow::inputTextChanged()
 // Trying to convert input to a command and printing out the appropriate output.
 void MainWindow::parseInput(const string &input)
 {
+
     Command* command = Zork::getParser()->commandConverter(input);
 
     string inputString = "> " + input + "\n\n";
@@ -98,43 +98,46 @@ void MainWindow::parseInput(const string &input)
     ui->inputConsole->setFocus();
 }
 
-// Buttons
-void MainWindow::northButtonPressed()
+/*
+ * Buttons
+ */
+void MainWindow::on_northButton_released()
 {
     parseInput("go north");
 }
 
-void MainWindow::eastButtonPressed()
+void MainWindow::on_eastButton_released()
 {
     parseInput("go east");
 }
 
-void MainWindow::southButtonPressed()
+void MainWindow::on_southButton_released()
 {
     parseInput("go south");
 }
 
-void MainWindow::westButtonPressed()
+void MainWindow::on_westButton_released()
 {
     parseInput("go west");
 }
 
-void MainWindow::mapButtonPressed()
+
+void MainWindow::on_mapButton_released()
 {
     parseInput("map");
 }
 
-void MainWindow::infoButtonPressed()
+void MainWindow::on_infoButton_released()
 {
     parseInput("info");
 }
 
-void MainWindow::teleportButtonPressed()
+void MainWindow::on_teleportButton_released()
 {
     parseInput("random");
 }
 
-void MainWindow::quitButtonPressed()
+void MainWindow::on_quitButton_released()
 {
     QMessageBox::StandardButton reply = QMessageBox::warning(this, "Forever Sleep", "Are you sure you want to go to sleep Captain?",
                                                               QMessageBox::Yes | QMessageBox::No);

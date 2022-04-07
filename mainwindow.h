@@ -25,15 +25,15 @@ public:
     void parseInput(const string &input);
 
 private slots:
-    void northButtonPressed();
-    void eastButtonPressed();
-    void southButtonPressed();
-    void westButtonPressed();
-    void mapButtonPressed();
-    void infoButtonPressed();
-    void teleportButtonPressed();
-    void quitButtonPressed();
     void inputTextChanged();
+    void on_northButton_released();
+    void on_southButton_released();
+    void on_eastButton_released();
+    void on_westButton_released();
+    void on_mapButton_released();
+    void on_infoButton_released();
+    void on_teleportButton_released();
+    void on_quitButton_released();
 
 private:
     Ui::MainWindow *ui;

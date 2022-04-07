@@ -25,15 +25,13 @@ public:
     static string processCommand(Command& command);
 
 private:
-
-
     static Room* currentRoom;
-    static map<string, Room> rooms;
+    static map<string, Room*> rooms;
 
     static string showHelp();
 
     static Parser* parser;
-    static void setCurrentRoom(string name);
+    static void setCurrentRoom(Room* name);
 
     static void teleportRandomRoom();
     static void teleportRoom(Command command);
