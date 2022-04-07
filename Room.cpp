@@ -82,7 +82,7 @@ string Room::displayItem()
         int x = (0);
         for (int n = sizeItems; n > 0; n--)
         {
-            tempString = tempString + itemsInRoom[x].getShortDescription() + "  " ;
+            tempString = tempString + itemsInRoom[x].getName() + "  " ;
             x++;
         }
     }
@@ -110,7 +110,7 @@ int Room::isItemInRoom(string inString)
         for (int n = sizeItems; n > 0; n--)
         {
             // compare inString with short description
-            int tempFlag = inString.compare( itemsInRoom[x].getShortDescription());
+            int tempFlag = inString.compare( itemsInRoom[x].getName());
             if (tempFlag == 0)
             {
                 itemsInRoom.erase(itemsInRoom.begin()+x);
