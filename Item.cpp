@@ -4,39 +4,51 @@ using namespace zork;
 
 Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/)
 {
-	description = inDescription;
-	setWeight(inWeightGrams);
-	value = inValue;
-	/**weaponCheck(isWeapon);*/
+    description = inDescription;
+    setWeight(inWeightGrams);
+    value = inValue;
+    /**weaponCheck(isWeapon);*/
 }
 
 Item::Item(string inDescription)
 {
-	description = inDescription;
+    description = inDescription;
 }
 
+// Programmer defined exception for setting weight
 void Item::setWeight(int inWeightGrams)
 {
     if (inWeightGrams > 9999 || inWeightGrams < 0)
     {
-       std::cout << "weight invalid, must be 0 < weight < 9999" ;
+        throw InvalidWeightException(inWeightGrams);
     }
     else
     {
-	   weightGrams = inWeightGrams;
+        weightGrams = inWeightGrams;
     }
 }
 
+int Item::getWeight()
+{
+    return weightGrams;
+}
+
+// Programmer defined exception for setting value
 void Item::setValue(float inValue)
 {
     if (inValue > 9999 || inValue < 0)
     {
-       std::cout << "value invalid, must be 0 < value < 9999";
+        throw InvalidValueException(inValue);
     }
     else
     {
-	   value = inValue;
+        value = inValue;
     }
+}
+
+float Item::getValue()
+{
+    return value;
 }
 
 /**void Item::setWeaponCheck(int isWeapon)
@@ -49,11 +61,11 @@ void Item::setValue(float inValue)
 
 string Item::getShortDescription()
 {
-	return description;
+    return description;
 }
 
 string Item::getLongDescription()
 {
-	return " item(s), " + description + ".\n";
+    return " item(s), " + description + ".\n";
 }
 
