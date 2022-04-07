@@ -15,16 +15,21 @@ namespace zork
 class Item
 {
 public:
-    Item (string description, int inWeight, float inValue);
-    Item (string description);
-    string getShortDescription();
-    string getLongDescription();
+    Item (string inName, int inWeight, float inValue);
+    Item (string inName);
+    string getName();
+    string getDescription();
     int getWeight();
     void setWeight(int weightGrams);
     float getValue();
     void setValue(float value);
     // int getWeaponCheck();
     // void setWeaponCheck(int weaponCheck);
+
+    virtual string use()
+    {
+        return "Nothing happened...";
+    }
 
     // Programmer defined exception and inheritance
     class InvalidWeightException : exception
@@ -57,12 +62,19 @@ public:
         const float value;
     };
 
-private:
-	string description;
-	string longDescription;
+protected:
+    string name;
+    string description;
 	int weightGrams;
 	float value;
 	bool weaponCheck;
+};
+
+class Lamp : Item
+{
+    Lamp();
+
+    string use() override;
 };
 
 }

@@ -2,20 +2,20 @@
 
 using namespace zork;
 
-Item::Item (string inDescription, int inWeightGrams, float inValue/**, int weaponCheck*/)
+Item::Item (string InName, int inWeightGrams, float inValue/**, int weaponCheck*/)
 {
-    description = inDescription;
+    name = InName;
     setWeight(inWeightGrams);
     value = inValue;
     /**weaponCheck(isWeapon);*/
 }
 
-Item::Item(string inDescription)
+Item::Item(string inName)
 {
-    description = inDescription;
+    name = inName;
 }
 
-// Programmer defined exception for setting weight
+// Setting weight which includes programmer defined exception
 void Item::setWeight(int inWeightGrams)
 {
     if (inWeightGrams > 9999 || inWeightGrams < 0)
@@ -33,7 +33,7 @@ int Item::getWeight()
     return weightGrams;
 }
 
-// Programmer defined exception for setting value
+// Setting value which includes programmer defined exception
 void Item::setValue(float inValue)
 {
     if (inValue > 9999 || inValue < 0)
@@ -59,13 +59,21 @@ float Item::getValue()
         cout << "Item is a weapon" ;
 }*/
 
-string Item::getShortDescription()
+string Item::getName()
 {
-    return description;
+    return name;
 }
 
-string Item::getLongDescription()
+string Item::getDescription()
 {
-    return " item(s), " + description + ".\n";
+    return " item(s), " + name + ".\n";
 }
 
+Lamp::Lamp() : Item("Lamp", 1000, 10)
+{
+}
+
+string Lamp::use()
+{
+    return "The room lit up!";
+}
