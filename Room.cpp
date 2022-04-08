@@ -42,9 +42,9 @@ string Room::exitString()
 {
     string exitString = "\nWays to travel, Captain:";
 
+    // Loop through map
     for (auto i = exits.begin(); i != exits.end(); i++)
     {
-        // Loop through map
         exitString += "  " + i->first; // Access the first element of the pair (direction as a string)
     }
 

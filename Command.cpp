@@ -12,9 +12,11 @@ Command::Command(string firstWord, string secondWord)
     this->secondWord = secondWord;
 }
 
-// Copy constructor, construct an instance of a class, based on an existing instance of the same class
-// Shallow copy is copying a reference to underlying data
-// Deep copy is when the underlying data is copied
+/*
+ * Copy constructor, construct an instance of a class, based on an existing instance of the same class
+ * Shallow copy is copying a reference to underlying data
+ * Deep copy is when the underlying data is copied
+ */
 Command::Command(const Command& command) :
     Command(command.commandWord, command.secondWord)
 {

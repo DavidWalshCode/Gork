@@ -10,7 +10,9 @@
 
 using namespace zork;
 
-//Constructor
+/*
+ * Constructor
+ */
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -20,37 +22,50 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setWindowTitle("Gork");
 }
 
-// Destructor
+/*
+ *  Destructor
+ */
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 
+/*
+ * Clearing console
+ */
 void MainWindow::clearConsole()
 {
     ui->outputConsole->clear();
 }
 
-// Printing to console
+/*
+ *  Printing to console
+ */
 void MainWindow::addStringToConsole(const string &input)
 {
     ui->outputConsole->setText(QString::fromStdString("\n") + QString::fromStdString(input));
 }
 
-// Printing to console
+/*
+ *  Printing to console
+ */
 void MainWindow::addQStringToConsole(const QString &input)
 {
     ui->outputConsole->setText(QString::fromStdString("\n") + input);
 }
 
-// Clears the console and prints
+/*
+ * Clears the console and prints
+ */
 void MainWindow::overwriteConsole(const string &input)
 {
     ui->outputConsole->clear();
     addStringToConsole(input);
 }
 
-// Handling what happens when the "enter" key is pressed on the text edit input.
+/*
+ *  Handling what happens when the "enter" key is pressed on the text edit input.
+ */
 void MainWindow::inputTextChanged()
 {
     // Converting from QString to string and finding the index of "enter" or "\n"
@@ -75,7 +90,9 @@ void MainWindow::inputTextChanged()
     }
 }
 
-// Trying to convert input to a command and printing out the appropriate output.
+/*
+ * Trying to convert input to a command and printing out the appropriate output
+ */
 void MainWindow::parseInput(const string &input)
 {
     Parser& parser = *Zork::getParser();

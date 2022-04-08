@@ -20,7 +20,7 @@ public:
     static void go(string direction);
     static bool go(Command command);
 
-    static void setParser(Parser *parser);
+    static void setParser(Parser* parser);
     static Parser* getParser();
 
     static void createRooms();

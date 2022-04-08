@@ -57,6 +57,7 @@ void Zork::createRooms()
     i->setExits(NULL, d, NULL, NULL);
     j->setExits(d, NULL, NULL, NULL);
 
+    // Insert into rooms (map<string, Room*)
     rooms.emplace("Seacove Ruins", a);
     rooms.emplace("Land of the Free", b);
     rooms.emplace("Kraken Island", c);
@@ -179,7 +180,9 @@ string Zork::showHelp()
     output += Zork::parser->showCommandsAsString();
     return output;
 }
-
+/*
+ * Go
+ */
 bool Zork::go(Command command)
 {
     if (!command.hasSecondWord())
@@ -228,7 +231,7 @@ Room* Zork::getCurrentRoom()
     return currentRoom;
 }
 
-void Zork::setParser(Parser *parser){
+void Zork::setParser(Parser* parser){
     Zork::parser = parser;
 }
 

@@ -17,8 +17,6 @@ struct TextContent {
     const static string onGo;
     const static string onTeleport;
     const static string showMap;
-
-    unsigned int timesTravelled = 4; // Bit?
 };
 
 }
