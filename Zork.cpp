@@ -21,31 +21,31 @@ void Zork::createRooms()
     // Creating rooms
     Room *a, *b, *c, *d, *e, *f, *g, *h, *i, *j;
 
-    a = new Room("a");
-    b = new Room("b");
-    c = new Room("c");
-    d = new Room("d");
-    e = new Room("e");
-    f = new Room("f");
-    g = new Room("g");
-    h = new Room("h");
-    i = new Room("i");
-    j = new Room("j");
+    a = new Room("Seacove Ruins");
+    b = new Room("Land of the Free");
+    c = new Room("Kraken Island");
+    d = new Room("Seaweed Retreat");
+    e = new Room("Bloodmoon Bay");
+    f = new Room("Freebooter Anchorage");
+    g = new Room("Reef of Old Salt");
+    h = new Room("Cavern of Storms");
+    i = new Room("Isle of the Sunken");
+    j = new Room("Rumrunner Redland");
 
     // Creating items
-    Item x("x", 2, 11);
-    Item y("y", 2, 22);
-    Item xx("xx", 3, 33);
-    Item yy("yy", 4, 44);
+    Item lamp("Lamp", 2, 11);
+    Item rum("Bottle of Rum", 3, 33);
+    Item pistol("Flicklock Pistol", 2, 22);
+    Item cutlass("Cutlass", 4, 44);
 
     // Adding items to rooms
-    a->addItem(x);
-    a->addItem(y);
-    b->addItem(xx);
-    b->addItem(yy);
+    b->addItem(lamp);
+    d->addItem(rum);
+    f->addItem(pistol);
+    j->addItem(cutlass);
 
     // Setting exits
-    //         (N,   E,   S,   W)
+    //         (N, E, S, W)
     a->setExits(f, b, d, c);
     b->setExits(NULL, NULL, NULL, a);
     c->setExits(NULL, a, NULL, NULL);
@@ -57,16 +57,16 @@ void Zork::createRooms()
     i->setExits(NULL, d, NULL, NULL);
     j->setExits(d, NULL, NULL, NULL);
 
-    rooms.emplace("a", a);
-    rooms.emplace("b", b);
-    rooms.emplace("c", c);
-    rooms.emplace("d", d);
-    rooms.emplace("e", e);
-    rooms.emplace("f", f);
-    rooms.emplace("g", g);
-    rooms.emplace("h", h);
-    rooms.emplace("i", i);
-    rooms.emplace("j", j);
+    rooms.emplace("Seacove Ruins", a);
+    rooms.emplace("Land of the Free", b);
+    rooms.emplace("Kraken Island", c);
+    rooms.emplace("Seaweed Retreat", d);
+    rooms.emplace("Bloodmoon Bay", e);
+    rooms.emplace("Freebooter Anchorage", f);
+    rooms.emplace("Reef of Old Salt", g);
+    rooms.emplace("Cavern of Storms", h);
+    rooms.emplace("Isle of the Sunken", i);
+    rooms.emplace("Rumrunner Redland", j);
 
     // Start off in this room
     setCurrentRoom(a);
@@ -75,7 +75,7 @@ void Zork::createRooms()
 // Memory management
 void Zork::deleteAll()
 {
-    //pair<const string, Room*>&
+    // pair<const string, Room*>&
     for (auto& p : rooms)
     {
         delete p.second;
@@ -112,7 +112,7 @@ string Zork::processCommand(Command& command)
         // If the go command works, execute it
         if (go(command) == true)
         {
-            //go(command);
+            output += TextContent::onGo;
             output += currentRoom->longDescription();
         }
         else
@@ -121,23 +121,18 @@ string Zork::processCommand(Command& command)
         }
 
     }
-    else if (commandWord.compare("random") == 0)
+    else if (commandWord.compare("teleport") == 0)
     {
         teleportRandomRoom();
         output += TextContent::onTeleport;
         output += currentRoom->longDescription();
     }
     /*
-    else if (commandWord.compare("teleport") == 0)
-    {
-        //cout << "Green mystical light soars through you and visions of endless possibilites appear" << endl;
-        teleportRoom(command);
-    }
     else if (commandWord.compare("take") == 0)
     {
         if (!command.hasSecondWord())
         {
-            cout << "Incomplete input"<< endl;
+            output += TextContent::inputError;
         }
         else if (command.hasSecondWord())
         {
@@ -156,7 +151,7 @@ string Zork::processCommand(Command& command)
                 cout << currentRoom->longDescription() << endl;
             }
         }
-    } */
+    }*/
     else if (commandWord.compare("quit") == 0)
     {
         if (command.hasSecondWord())
@@ -165,7 +160,7 @@ string Zork::processCommand(Command& command)
         }
         else
         {
-            // Make delete command and put here, something like (Zork::deleteAllStuff();)
+            Zork::deleteAll();
         }
 
         exit(0); // signal to quit
@@ -199,20 +194,15 @@ bool Zork::go(Command command)
 
 void Zork::go(string direction)
 {
-    // Make the direction lowercase
-    // transform(direction.begin(), direction.end(), direction.begin(),:: tolower);
-    // Move to the next room
     Room* nextRoom = currentRoom->nextRoom(direction);
 
     if (nextRoom == NULL)
     {
         return;
-        //cout << "You can't move in that direction" << endl;
     }
     else
     {
         setCurrentRoom(nextRoom);
-        //cout << currentRoom->longDescription() << endl;
     }
 }
 
@@ -221,34 +211,17 @@ void Zork::teleportRandomRoom()
     auto it = rooms.begin();
     advance(it, rand() % rooms.size());
 
-    // Need to update teleport func because of room change
-    //setCurrentRoom(it->first);
+    setCurrentRoom(it->second);
 }
-
-/*
-void Zork::teleportRoom(Command command)
-{
-    if (!command.hasSecondWord())
-    {
-        cout << "Incomplete input" << endl;
-        return;
-    }
-
-    string destination = command.getSecondWord();
-    setCurrentRoom(destination);
-
-    cout << currentRoom->longDescription() << endl;
-}*/
 
 void Zork::setCurrentRoom(Room* name)
 {
-    //    auto it = rooms.find(name);
-
-    //    if (it != rooms.end())
-    //    {
-    //        currentRoom = &it->second;
-    //    }
     currentRoom = name;
+}
+
+Room* Zork::getCurrentRoom()
+{
+    return currentRoom;
 }
 
 void Zork::setParser(Parser *parser){

@@ -40,7 +40,7 @@ string Room::longDescription()
 
 string Room::exitString()
 {
-    string exitString = "\nWays to travel:";
+    string exitString = "\nWays to travel, Captain:";
 
     for (auto i = exits.begin(); i != exits.end(); i++)
     {
@@ -63,8 +63,6 @@ Room* Room::nextRoom(string direction)
 
 void Room::addItem(Item item)
 {
-    //cout << endl;
-    //cout << "Just added" + inItem->getLongDescription();
     itemsInRoom.push_back(item);
 }
 
