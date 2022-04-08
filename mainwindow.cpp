@@ -1,12 +1,12 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "Zork.h"
-#include "TextContent.h"
-
 #include <QMessageBox>
 #include <QDebug>
 #include <QKeyEvent>
 #include <QScrollBar>
+
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "Zork.h"
+#include "TextContent.h"
 
 using namespace zork;
 
@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->inputConsole->setFocus();
+    this->setWindowTitle("Gork");
 }
 
 // Destructor
@@ -122,19 +123,24 @@ void MainWindow::on_westButton_released()
     parseInput("go west");
 }
 
-void MainWindow::on_mapButton_released()
-{
-    parseInput("map");
-}
-
 void MainWindow::on_infoButton_released()
 {
     parseInput("info");
 }
 
+void MainWindow::on_mapButton_released()
+{
+    parseInput("map");
+}
+
 void MainWindow::on_teleportButton_released()
 {
     parseInput("teleport");
+}
+
+void MainWindow::on_takeButton_released()
+{
+    parseInput("take");
 }
 
 void MainWindow::on_quitButton_released()
@@ -147,4 +153,8 @@ void MainWindow::on_quitButton_released()
         parseInput("quit");
     }
 }
+
+
+
+
 

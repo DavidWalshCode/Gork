@@ -30,9 +30,10 @@ private slots:
     void on_southButton_released();
     void on_eastButton_released();
     void on_westButton_released();
-    void on_mapButton_released();
     void on_infoButton_released();
+    void on_mapButton_released();
     void on_teleportButton_released();
+    void on_takeButton_released();
     void on_quitButton_released();
 
 private:

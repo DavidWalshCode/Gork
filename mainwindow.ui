@@ -61,30 +61,16 @@
     <property name="geometry">
      <rect>
       <x>770</x>
-      <y>440</y>
+      <y>450</y>
       <width>169</width>
-      <height>74</height>
+      <height>88</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="mapButton">
-       <property name="text">
-        <string>Map</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
       <widget class="QPushButton" name="infoButton">
        <property name="text">
         <string>Info</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="teleportButton">
-       <property name="text">
-        <string>Teleport</string>
        </property>
       </widget>
      </item>
@@ -124,6 +110,39 @@
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
       <widget class="QTextEdit" name="inputConsole"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>430</y>
+      <width>160</width>
+      <height>88</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="mapButton">
+       <property name="text">
+        <string>Map</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="takeButton">
+       <property name="text">
+        <string>Take</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="teleportButton">
+       <property name="text">
+        <string>Teleport</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>
