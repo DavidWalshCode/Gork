@@ -54,8 +54,8 @@ public:
     string getName();
     string getDescription();
 
-    void setWeight(int weightGrams); // can throw InvalidWeightException!
-    void setValue(float value); // can throw InvalidValueException!
+    void setWeight(int weightGrams); // Can throw InvalidWeightException!
+    void setValue(float value); // Can throw InvalidValueException!
 
     float getValue();
     int getWeight();

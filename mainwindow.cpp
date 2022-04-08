@@ -91,7 +91,7 @@ void MainWindow::inputTextChanged()
 }
 
 /*
- * Trying to convert input to a command and printing out the appropriate output
+ * Converting input to a command and printing out the appropriate output
  */
 void MainWindow::parseInput(const string &input)
 {
