@@ -151,7 +151,8 @@ string Zork::processCommand(Command& command)
                 cout << currentRoom->longDescription() << endl;
             }
         }
-    }*/
+    }
+    */
     else if (commandWord.compare("quit") == 0)
     {
         if (command.hasSecondWord())

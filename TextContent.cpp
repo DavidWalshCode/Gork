@@ -3,7 +3,7 @@
 using namespace zork;
 
 const string TextContent::welcome = "Welcome to the land of the living Captain. "
-                                      "I can feel the eyes of the depths watching us, we better go now.\n";
+                                    "I can feel the eyes of the depths watching us, we better go now.\n";
 
 const string TextContent::inputError = "What did you say Captain? The crew didn't hear you.\n";
 

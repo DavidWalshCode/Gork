@@ -5,7 +5,7 @@ using namespace zork;
 // Constructor
 Parser::Parser()
 {
-	commands = new CommandWords();
+    commands = new CommandWords();
 }
 
 // Destructor
@@ -18,9 +18,9 @@ Parser::~Parser()
 Command* Parser::operator()(string input)
 {
     string word1, word2;
-	vector<string> words;
+    vector<string> words;
 
-	string::size_type pos = 0, last_pos = 0;
+    string::size_type pos = 0, last_pos = 0;
 
     pos = input.find_first_of(' ', last_pos); // Find and remember first space
 

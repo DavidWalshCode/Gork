@@ -19,7 +19,7 @@ public:
     string showCommandsAsString();
 
 private:
-	CommandWords *commands;
+    CommandWords *commands;
 };
 
 }

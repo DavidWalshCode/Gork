@@ -19,8 +19,8 @@ public:
     bool hasSecondWord();
 
 private:
-	string commandWord;
-	string secondWord;
+    string commandWord;
+    string secondWord;
 };
 
 }

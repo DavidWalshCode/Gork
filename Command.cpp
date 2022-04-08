@@ -8,8 +8,8 @@ using namespace zork;
  */
 Command::Command(string firstWord, string secondWord)
 {
-	this->commandWord = firstWord;
-	this->secondWord = secondWord;
+    this->commandWord = firstWord;
+    this->secondWord = secondWord;
 }
 
 // Copy constructor, construct an instance of a class, based on an existing instance of the same class
@@ -25,7 +25,7 @@ Command::Command(const Command& command) :
  */
 string Command::getCommandWord()
 {
-	return this->commandWord;
+    return this->commandWord;
 }
 
 /*
@@ -33,7 +33,7 @@ string Command::getCommandWord()
  */
 string Command::getSecondWord()
 {
-	return this->secondWord;
+    return this->secondWord;
 }
 
 /*
@@ -41,7 +41,7 @@ string Command::getSecondWord()
  */
 bool Command::isUnknown()
 {
-	return (commandWord.empty());
+    return (commandWord.empty());
 }
 
 /*
@@ -49,5 +49,5 @@ bool Command::isUnknown()
  */
 bool Command::hasSecondWord()
 {
-	return (!secondWord.empty());
+    return (!secondWord.empty());
 }

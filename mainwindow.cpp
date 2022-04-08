@@ -13,7 +13,7 @@ using namespace zork;
 //Constructor
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-      ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->inputConsole->setFocus();
@@ -140,7 +140,7 @@ void MainWindow::on_teleportButton_released()
 void MainWindow::on_quitButton_released()
 {
     QMessageBox::StandardButton reply = QMessageBox::warning(this, "Forever Sleep", "Are you sure you want to go to sleep Captain?",
-                                                              QMessageBox::Yes | QMessageBox::No);
+                                                             QMessageBox::Yes | QMessageBox::No);
 
     if (reply == QMessageBox::Yes)
     {

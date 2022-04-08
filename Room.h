@@ -16,12 +16,12 @@ namespace zork
 class Room
 {
 public:
-	Room(string name);
+    Room(string name);
 
-	int numberOfItems();
-	string shortDescription();
-	string longDescription();
-	string displayItem();
+    int numberOfItems();
+    string shortDescription();
+    string longDescription();
+    string displayItem();
 
     void setExits(Room* north, Room* east, Room* south, Room* west);
     Room* nextRoom(string direction);
@@ -30,10 +30,10 @@ public:
     void removeItemFromRoom(int location);
 
 private:
-	string name;
+    string name;
     map<string, Room*> exits;
-	string exitString();
-	vector <Item> itemsInRoom;
+    string exitString();
+    vector <Item> itemsInRoom;
 };
 
 }

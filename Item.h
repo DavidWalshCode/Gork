@@ -63,9 +63,9 @@ public:
 protected:
     string name;
     string description;
-	int weightGrams;
-	float value;
-	bool weaponCheck;
+    int weightGrams;
+    float value;
+    bool weaponCheck;
 };
 
 class Lamp : Item

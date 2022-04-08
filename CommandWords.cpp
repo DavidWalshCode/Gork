@@ -9,16 +9,16 @@ vector<string> CommandWords::validCommands;
  */
 CommandWords::CommandWords()
 {
-	// Populate the vector if we haven't already.
+    // Populate the vector if we haven't already.
     if (validCommands.empty())
     {
-		validCommands.push_back("go");
+        validCommands.push_back("go");
         validCommands.push_back("map");
         validCommands.push_back("teleport");
-		validCommands.push_back("take");
+        validCommands.push_back("take");
         validCommands.push_back("info");
         validCommands.push_back("quit");
-	}
+    }
 }
 
 /*
@@ -27,17 +27,17 @@ CommandWords::CommandWords()
  */
 bool CommandWords::isCommand(string myCommand)
 {
-	for (unsigned int i = 0; i < validCommands.size(); i++)
-	{
+    for (unsigned int i = 0; i < validCommands.size(); i++)
+    {
         if (validCommands[i].compare(myCommand) == 0)
         {
             // myCommand is a command
-			return true;
+            return true;
         }
-	}
+    }
 
     // myCommand is not a command
-	return false;
+    return false;
 }
 
 /*

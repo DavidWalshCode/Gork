@@ -20,7 +20,7 @@ public:
 
 private:
     // Define a static vector for our valid command words. We'll populate this in the class constructor
-	static vector<string> validCommands;
+    static vector<string> validCommands;
 };
 
 }
