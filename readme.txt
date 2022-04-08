@@ -15,7 +15,7 @@ C++ Concepts Implemented:
 - Operator overloading						// DONE Parser.h
 - Abstract classes							//
 - Copy constructors (deep, shallow copy)	// DONE Command.cpp
-- Bit structures							//
+- Bit structures							// Structs done but not bit structs
 = Advanced pre-processor directives			//
 - C++ Object Construction Sequence			//
 - Initializer List							//
