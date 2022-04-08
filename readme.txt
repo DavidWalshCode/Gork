@@ -25,7 +25,7 @@ C++ Concepts Implemented:
 - Destructors 								// DONE Parser.cpp and mainwindow.cpp
 - Memory management							// DONE Zork.cpp, executed in main.cpp
 - Header files (inclusion guards) 			// DONE All over code
-- Arrays and pointers						//
+- Arrays and pointers						// DONE All over code
 - Friendship								//
 - Global variables							// DONE Zork.cpp
 - Private, Public, Protected				// DONE All over code, protected is in Item.h
