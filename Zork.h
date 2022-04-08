@@ -26,6 +26,8 @@ public:
     static void createRooms();
     static string processCommand(Command& command);
 
+    static Room* getCurrentRoom();
+
     static void deleteAll();
 
 private:

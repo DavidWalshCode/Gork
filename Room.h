@@ -17,15 +17,17 @@ class Room
 {
 public:
 	Room(string name);
+
 	int numberOfItems();
-    void setExits(Room* north, Room* east, Room* south, Room* west);
 	string shortDescription();
 	string longDescription();
-    Room* nextRoom(string direction);
-	void addItem(Item item);
 	string displayItem();
-	int isItemInRoom(string inString);
-	void removeItemFromRoom(int location);
+
+    void setExits(Room* north, Room* east, Room* south, Room* west);
+    Room* nextRoom(string direction);
+    void addItem(Item item);
+    int isItemInRoom(string inString);
+    void removeItemFromRoom(int location);
 
 private:
 	string name;
