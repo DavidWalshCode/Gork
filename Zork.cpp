@@ -24,11 +24,11 @@ void Zork::createRooms()
     a = new Room("Seacove Ruins");
     b = new Room("Land of the Free");
     c = new Room("Kraken Island");
-    d = new Room("Seaweed Retreat");
+    d = new Room("Seaweed Shackles Retreat");
     e = new Room("Bloodmoon Bay");
     f = new Room("Freebooter Anchorage");
-    g = new Room("Reef of Old Salt");
-    h = new Room("Cavern of Storms");
+    g = new Room("Reef of Frozen Salt");
+    h = new Room("Cavern of the Old Storm");
     i = new Room("Isle of the Sunken");
     j = new Room("Rumrunner Redland");
 
@@ -60,11 +60,11 @@ void Zork::createRooms()
     rooms.emplace("Seacove Ruins", a);
     rooms.emplace("Land of the Free", b);
     rooms.emplace("Kraken Island", c);
-    rooms.emplace("Seaweed Retreat", d);
+    rooms.emplace("Seaweed Shackles Retreat", d);
     rooms.emplace("Bloodmoon Bay", e);
     rooms.emplace("Freebooter Anchorage", f);
-    rooms.emplace("Reef of Old Salt", g);
-    rooms.emplace("Cavern of Storms", h);
+    rooms.emplace("Reef of Frozen Salt", g);
+    rooms.emplace("Cavern of the Old Storm", h);
     rooms.emplace("Isle of the Sunken", i);
     rooms.emplace("Rumrunner Redland", j);
 
@@ -72,10 +72,13 @@ void Zork::createRooms()
     setCurrentRoom(a);
 }
 
-// Memory management
+/*
+ * Memory management, cleanup
+ */
 void Zork::deleteAll()
 {
     // pair<const string, Room*>&
+    // Loops through the map of rooms and deletes them
     for (auto& p : rooms)
     {
         delete p.second;
@@ -127,7 +130,6 @@ string Zork::processCommand(Command& command)
         output += TextContent::onTeleport;
         output += currentRoom->longDescription();
     }
-    /*
     else if (commandWord.compare("take") == 0)
     {
         if (!command.hasSecondWord())
@@ -136,23 +138,21 @@ string Zork::processCommand(Command& command)
         }
         else if (command.hasSecondWord())
         {
-            cout << "You're trying to take " << command.getSecondWord() << endl;
+            output += "We're trying to raid and pillage, " + command.getSecondWord() + "\n";
+
             int location = currentRoom->isItemInRoom(command.getSecondWord());
 
             if (location < 0)
             {
-                cout << "Item is not in room..." << endl;
+                output += "Nothing good is on the island...\n";
             }
             else
             {
-                cout << "Item is in room!" << endl;
-                cout << "Index number " << location << endl;
-                cout << endl;
-                cout << currentRoom->longDescription() << endl;
+                output += "Item is around!\n ";
+                output += "Index number is " + std::to_string(location) + "\n" + currentRoom->longDescription() + "\n";
             }
         }
     }
-    */
     else if (commandWord.compare("quit") == 0)
     {
         if (command.hasSecondWord())
@@ -207,6 +207,9 @@ void Zork::go(string direction)
     }
 }
 
+/*
+ * Loops through all rooms and sets the current room to a random one
+ */
 void Zork::teleportRandomRoom()
 {
     auto it = rooms.begin();

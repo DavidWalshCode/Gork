@@ -7,12 +7,12 @@ const string TextContent::welcome = "Welcome to the land of the living Captain. 
 
 const string TextContent::inputError = "What did you say Captain? The crew didn't hear you.\n";
 
-const string TextContent::noMoreRooms = "No more areas this way. We must try another direction Captain.\n";
+const string TextContent::noMoreRooms = "No more areas to pillage this way. We must try another direction Captain.\n";
 
-const string TextContent::onGo = "Set sail you dirty bigle rats! Much love to you all.\n";
+const string TextContent::onGo = "Set sail you dirty bigle rats! Much love to you all hahaha.\n";
 
 const string TextContent::onTeleport = "Get the ship's mage! You are chaos incarnate, green mystical light soars through you and visions of endless possibilites appear. "
-                                       "You do not get time to chosoe however.\n";
+                                       "You do not get the time to choose however.\n";
 
 const string TextContent::showMap = "Captain here be the rum soaked map!\n"
                                     "[h] --- [f] --- [g]\n"

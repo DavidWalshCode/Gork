@@ -2,12 +2,11 @@
 
 using namespace zork;
 
-Item::Item (string InName, int inWeightGrams, float inValue/**, int weaponCheck*/)
+Item::Item (string InName, int inWeightGrams, float inValue)
 {
     name = InName;
     setWeight(inWeightGrams);
     value = inValue;
-    /**weaponCheck(isWeapon);*/
 }
 
 Item::Item(string inName)
@@ -15,7 +14,9 @@ Item::Item(string inName)
     name = inName;
 }
 
-// Setting weight which includes programmer defined exception
+/*
+ *  Setting weight which includes programmer defined exception
+ */
 void Item::setWeight(int inWeightGrams)
 {
     if (inWeightGrams > 9999 || inWeightGrams < 0)
@@ -33,7 +34,9 @@ int Item::getWeight()
     return weightGrams;
 }
 
-// Setting value which includes programmer defined exception
+/*
+ *  Setting value which includes programmer defined exception
+ */
 void Item::setValue(float inValue)
 {
     if (inValue > 9999 || inValue < 0)
