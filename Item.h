@@ -24,6 +24,7 @@ public:
     float getValue();
     void setValue(float value);
 
+    // Virtual function
     virtual string use()
     {
         return "Nothing happened...";

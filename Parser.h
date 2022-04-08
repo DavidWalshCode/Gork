@@ -14,7 +14,7 @@ public:
     ~Parser();
 
     // Command* commandConverter(string input);
-    Command* operator()(string input);
+    Command* operator()(string input); // Operator overloading, the brackets
 
     string showCommandsAsString();
 
