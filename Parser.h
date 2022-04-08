@@ -13,7 +13,7 @@ public:
     Parser();
     ~Parser();
 
-    //Command* commandConverter(string input);
+    // Command* commandConverter(string input);
     Command* operator()(string input);
 
     string showCommandsAsString();

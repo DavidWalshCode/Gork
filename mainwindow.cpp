@@ -146,9 +146,5 @@ void MainWindow::on_quitButton_released()
     {
         parseInput("quit");
     }
-    else
-    {
-       //qDebug() << "No is clicked";
-    }
 }
 

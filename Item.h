@@ -23,8 +23,6 @@ public:
     void setWeight(int weightGrams);
     float getValue();
     void setValue(float value);
-    // int getWeaponCheck();
-    // void setWeaponCheck(int weaponCheck);
 
     virtual string use()
     {
