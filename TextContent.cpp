@@ -14,7 +14,7 @@ const string TextContent::onGo = "Set sail you dirty bigle rats! Much love to yo
 const string TextContent::onTeleport = "Get the ship's mage! You are chaos incarnate, green mystical light soars through you and visions of endless possibilites appear. "
                                        "You do not get the time to choose however.\n";
 
-const string TextContent::showMap = "Captain here be the rum soaked map!\n"
+const string TextContent::showMap = "Captain here be the rum soaked map! Who forget to mark the names of the islands?\n"
                                     "[h] --- [f] --- [g]\n"
                                     "           |         \n"
                                     "           |         \n"
